@@ -1,0 +1,324 @@
+{
+  "pull_up": {
+    "id": "pull_up",
+    "dataset_id": "0652",
+    "name": "單槓引體向上",
+    "english_name": "pull-up",
+    "target_area": "背部（闊背肌）、二頭肌",
+    "tip": "向上拉到下巴過槓，慢慢下放，別晃動借力。",
+    "gif": "gifs/pull_up.gif",
+    "steps": [
+      "雙手握槓略寬於肩膀，手臂自然伸直懸掛，核心繃緊不晃動。",
+      "背部闊背肌發力，手肘向下向後拉，將胸口引向單槓直至下巴過槓。",
+      "在頂端稍作停頓夾緊背肌，然後有控制地慢速下放回到起始位置。"
+    ]
+  },
+  "dumbbell_bench_press": {
+    "id": "dumbbell_bench_press",
+    "dataset_id": "0289",
+    "name": "啞鈴臥推",
+    "english_name": "dumbbell bench press",
+    "target_area": "胸大肌、手臂三頭肌",
+    "tip": "躺在臥推椅上，雙腳踩實，啞鈴推到胸口正上方，手肘微內收約45度。",
+    "gif": "gifs/dumbbell_bench_press.gif",
+    "steps": [
+      "仰臥在健身椅上，雙腳踩實地面，手持啞鈴推至胸部正上方。",
+      "吸氣，手肘與軀幹夾約45度，慢速將啞鈴下放至胸口兩側，感受胸肌拉伸。",
+      "吐氣，胸肌發力將啞鈴推回正上方，手肘微曲不鎖死。"
+    ]
+  },
+  "single_arm_dumbbell_row": {
+    "id": "single_arm_dumbbell_row",
+    "dataset_id": "0292",
+    "name": "單手啞鈴划船",
+    "english_name": "dumbbell one arm bent-over row",
+    "target_area": "背部闊背肌、肩胛穩定肌群",
+    "tip": "一手一膝跪在椅子上支撐，另一手持鈴垂直拉向髖部，感受背肌夾緊。",
+    "gif": "gifs/single_arm_dumbbell_row.gif",
+    "steps": [
+      "單手與同側膝蓋跪在健身椅上支撐，背部打平，另一手持啞鈴自然下垂。",
+      "啟動背部肌群，手肘順勢向後上方拉動，將啞鈴提至髖部側邊並夾緊背肌。",
+      "頂端停頓1秒，隨後順著重力有控制地慢速放回起始點，換邊重複。"
+    ]
+  },
+  "dumbbell_shoulder_press": {
+    "id": "dumbbell_shoulder_press",
+    "dataset_id": "0405",
+    "name": "啞鈴肩推",
+    "english_name": "dumbbell seated shoulder press",
+    "target_area": "肩部（三角肌前中束）",
+    "tip": "坐在椅子上背打直，核心收緊，啞鈴垂直向上推舉至頂端微曲不鎖死。",
+    "gif": "gifs/dumbbell_shoulder_press.gif",
+    "steps": [
+      "端坐在健身椅上，背部緊貼椅背，雙手持鈴舉於耳朵兩旁，手肘約呈90度。",
+      "吐氣，肩膀發力垂直向上推起啞鈴至頭頂上方，手肘微屈不硬鎖。",
+      "吸氣，沿著原本推舉軌跡穩定慢速下放回到耳朵旁。"
+    ]
+  },
+  "dumbbell_lateral_raise": {
+    "id": "dumbbell_lateral_raise",
+    "dataset_id": "0334",
+    "name": "啞鈴側平舉",
+    "english_name": "dumbbell lateral raise",
+    "target_area": "肩膀兩側（三角肌中束）",
+    "tip": "手肘微屈固定，由肩膀發力往兩側平舉至與肩同高，下放保持控制。",
+    "gif": "gifs/dumbbell_lateral_raise.gif",
+    "steps": [
+      "身體微前傾，雙手自然垂持啞鈴於身體兩側，手肘保持微屈固定。",
+      "肩膀中束發力，雙臂由兩側平順抬起到與肩平行（像倒水微傾）。",
+      "在最高點停留半秒，抵抗重力慢放約2-3秒回到身側。"
+    ]
+  },
+  "dumbbell_bicep_curl": {
+    "id": "dumbbell_bicep_curl",
+    "dataset_id": "0294",
+    "name": "二頭彎舉",
+    "english_name": "dumbbell biceps curl",
+    "target_area": "手臂前側（二頭肌）",
+    "tip": "雙手肘緊貼身體兩側不晃動，只靠前臂上下帶動重量，頂端感受二頭緊縮。",
+    "gif": "gifs/dumbbell_bicep_curl.gif",
+    "steps": [
+      "挺胸站立或端坐，雙手掌心朝前握鈴，手肘緊貼身體兩側軀幹。",
+      "大臂保持完全不動，二頭肌發力將啞鈴向上彎舉至胸前最高點擠壓二頭。",
+      "緩慢下放至手臂接近伸直，感受肌肉持續受張力。"
+    ]
+  },
+  "dumbbell_tricep_extension": {
+    "id": "dumbbell_tricep_extension",
+    "dataset_id": "0430",
+    "name": "三頭肌伸展",
+    "english_name": "dumbbell standing triceps extension",
+    "target_area": "手臂後側（三頭肌）",
+    "tip": "托住啞鈴舉過頭頂，大臂垂直不動，彎曲手肘將啞鈴下放至腦後再伸直。",
+    "gif": "gifs/dumbbell_tricep_extension.gif",
+    "steps": [
+      "雙手掌心托住啞鈴內側啞鈴片，舉至頭頂正上方，大臂垂直貼近耳朵。",
+      "保持大臂角度不變，彎曲手肘將啞鈴慢速下放至後腦勺下方。",
+      "手臂後側三頭肌發力，垂直伸直手肘將啞鈴推回頭頂。"
+    ]
+  },
+  "goblet_squat": {
+    "id": "goblet_squat",
+    "dataset_id": "1760",
+    "name": "高腳杯深蹲",
+    "english_name": "dumbbell goblet squat",
+    "target_area": "大腿前側（股四頭肌）、臀肌",
+    "tip": "雙手抱緊啞鈴垂直立於胸前，重心放腳跟，順暢下蹲至大腿水平後站起。",
+    "gif": "gifs/goblet_squat.gif",
+    "steps": [
+      "雙手捧住單隻啞鈴緊貼胸口，雙腳站距略寬於肩，腳尖微朝外30度。",
+      "臀部主動向後坐並順勢屈膝下蹲，手肘自然落在大腿內側之間，下蹲至大腿平行地面。",
+      "腳掌中心與腳跟扎實蹬地，臀腿發力順暢站起並夾緊臀部。"
+    ]
+  },
+  "bulgarian_split_squat": {
+    "id": "bulgarian_split_squat",
+    "dataset_id": "0410",
+    "name": "保加利亞分腿蹲",
+    "english_name": "dumbbell single leg split squat",
+    "target_area": "單腿臀大肌、股四頭肌",
+    "tip": "後腳背搭在後方椅子上，前腳向前跨步，垂直下蹲至前腿約90度再發力站起。",
+    "gif": "gifs/bulgarian_split_squat.gif",
+    "steps": [
+      "背對健身椅，單腳向後將腳背搭在椅面上，前腳向前跨大步站穩。",
+      "軀幹微前傾，前腳垂直下蹲至大腿與地面平行（膝蓋不內夾）。",
+      "前腳腳後跟發力蹬起回到站姿，完成目標次數後換腳。"
+    ]
+  },
+  "dumbbell_romanian_deadlift": {
+    "id": "dumbbell_romanian_deadlift",
+    "dataset_id": "1459",
+    "name": "啞鈴羅馬尼亞硬舉",
+    "english_name": "dumbbell romanian deadlift",
+    "target_area": "大腿後側（腿後肌）、臀肌、下背",
+    "tip": "膝蓋微屈保持角度，屁股主動向後推，背打直，啞鈴順著大腿前側貼身下放。",
+    "gif": "gifs/dumbbell_romanian_deadlift.gif",
+    "steps": [
+      "雙腳與髖同寬站立，雙手持啞鈴垂於大腿前，膝蓋微彎並保持角度鎖定。",
+      "屁股主動向後推、上半身前傾背部打直，啞鈴沿大腿前側順勢滑至膝蓋下方。",
+      "感受大腿後側強烈緊繃拉伸後，臀肌發力向前推髖站直夾臀。"
+    ]
+  },
+  "single_leg_hip_thrust": {
+    "id": "single_leg_hip_thrust",
+    "dataset_id": "3645",
+    "name": "單腿臀推",
+    "english_name": "single leg bridge with outstretched leg",
+    "target_area": "臀大肌、單側核心穩定",
+    "tip": "仰臥曲膝，單腳抬高，靠支撐腳的腳後跟發力將臀部推向天花板，頂端夾緊臀部。",
+    "gif": "gifs/single_leg_hip_thrust.gif",
+    "steps": [
+      "仰臥在瑜珈墊上雙腿曲膝，抬起一條腿並在空中打直或微屈。",
+      "支撐腿的腳後跟向地面施力，發力將臀部垂直推高至骨盆與大腿呈一直線。",
+      "在頂端強力夾緊臀肌1秒，隨後控制節奏將臀部輕輕放回地面。"
+    ]
+  },
+  "ab_wheel_rollout": {
+    "id": "ab_wheel_rollout",
+    "dataset_id": "0857",
+    "name": "滾輪",
+    "english_name": "wheel rollerout",
+    "target_area": "核心腹肌、深層腹橫肌",
+    "tip": "雙膝跪地收緊肚子骨盆微後傾，滾輪慢速向前滑行，用腹肌發力將滾輪拉回。",
+    "gif": "gifs/ab_wheel_rollout.gif",
+    "steps": [
+      "雙膝跪地，雙手握緊滾輪把手置於肩膀正下方，腹部用力微收骨盆。",
+      "維持背部微拱不塌腰，緩慢將滾輪往前推滾至身體延伸（量力而為）。",
+      "核心腹肌用力向內收縮，將滾輪拉回起始位置。"
+    ]
+  },
+  "side_plank": {
+    "id": "side_plank",
+    "dataset_id": "0705",
+    "name": "側棒式",
+    "english_name": "side bridge v. 2",
+    "target_area": "側腹肌（腹斜肌）、核心軀幹穩定",
+    "tip": "前臂撐地側躺，骨盆推高使身體從頭部、髖部到腳踝成一直線，保持正常呼吸。",
+    "gif": "gifs/side_plank.gif",
+    "steps": [
+      "側躺於墊上，單側手肘撐在肩膀正下方，雙腿併攏伸直。",
+      "腹斜肌與核心發力將骨盆推離地面，使頭、肩、髖、踝成一直線。",
+      "維持均勻呼吸保持姿勢達到目標秒數，然後換側訓練。"
+    ]
+  },
+  "dumbbell_incline_bench_press": {
+    "id": "dumbbell_incline_bench_press",
+    "dataset_id": "0314",
+    "name": "啞鈴上斜臥推",
+    "english_name": "dumbbell incline bench press",
+    "target_area": "上胸大肌、肩膀前束",
+    "tip": "椅背調整至約30-45度，雙腳踩穩，啞鈴由胸口鎖骨下方垂直推向正上方。",
+    "gif": "gifs/dumbbell_incline_bench_press.gif",
+    "steps": [
+      "臥推椅調整至30至45度上斜角度，躺好後雙手持啞鈴推至上胸上方。",
+      "吸氣，手肘外開約45度，慢速將啞鈴下放至鎖骨兩側，感受上胸拉開。",
+      "吐氣，上胸肌發力垂直推回原位，在頂端意念集中擠壓上胸。"
+    ]
+  },
+  "dumbbell_bent_over_row": {
+    "id": "dumbbell_bent_over_row",
+    "dataset_id": "0293",
+    "name": "啞鈴划船",
+    "english_name": "dumbbell bent over row",
+    "target_area": "上背部、中背夾背肌群",
+    "tip": "雙腳微屈俯身約45度，背打直，雙手持鈴順勢向後上方拉向肋骨兩側。",
+    "gif": "gifs/dumbbell_bent_over_row.gif",
+    "steps": [
+      "雙膝微曲，上半身前傾約45度背部挺直，雙手持啞鈴自然下垂。",
+      "肩胛骨向後收攏，雙手手肘貼近軀幹順勢往後上方拉至肋骨兩側。",
+      "在最高點擠壓背肌停頓1秒，隨後吸氣慢速下放回原位。"
+    ]
+  },
+  "dumbbell_arnold_press": {
+    "id": "dumbbell_arnold_press",
+    "dataset_id": "2137",
+    "name": "啞鈴阿諾肩推",
+    "english_name": "dumbbell arnold press",
+    "target_area": "肩膀三角肌前中束",
+    "tip": "起步時手掌朝向自己胸前，推舉時順勢向外旋轉手腕，推到頂端手掌朝前。",
+    "gif": "gifs/dumbbell_arnold_press.gif",
+    "steps": [
+      "端坐椅上，啞鈴舉在胸前，掌心朝向自己（像二頭彎舉頂端）。",
+      "向上推舉的同時向外旋轉手腕，推至頭頂正上方時掌心剛好朝向前。",
+      "沿原路徑旋轉手腕慢速下放，回至胸前起始位置。"
+    ]
+  },
+  "dumbbell_reverse_fly": {
+    "id": "dumbbell_reverse_fly",
+    "dataset_id": "0378",
+    "name": "反向飛鳥",
+    "english_name": "dumbbell rear fly",
+    "target_area": "肩膀後側（三角肌後束）、上背",
+    "tip": "俯身前傾背部挺直，手臂微屈像抱樹一樣向兩側展開，專注肩後發力夾背。",
+    "gif": "gifs/dumbbell_reverse_fly.gif",
+    "steps": [
+      "坐在椅子邊緣俯身前傾，胸部貼近大腿，雙手於腿下方輕握啞鈴。",
+      "手肘微彎固定角度，肩膀後束發力將雙臂向身體兩側水平展開如飛鳥展翅。",
+      "頂端短暫停頓感受後肩與上背收縮，抵抗重量慢速下放。"
+    ]
+  },
+  "dumbbell_hammer_curl": {
+    "id": "dumbbell_hammer_curl",
+    "dataset_id": "0313",
+    "name": "槌式彎舉",
+    "english_name": "dumbbell hammer curl",
+    "target_area": "二頭肌外側、前臂肌群",
+    "tip": "雙手掌心相對握鈴（如持鎚），手肘貼緊身體軀幹，上下平穩彎舉。",
+    "gif": "gifs/dumbbell_hammer_curl.gif",
+    "steps": [
+      "雙腳自然站立挺胸收腹，雙手持啞鈴掌心相對（虎口朝前）。",
+      "手肘固定在身體兩側，保持掌心相對將啞鈴向上彎舉至胸口兩側。",
+      "頂端擠壓手臂前臂與外側二頭，再穩定均勻地慢放回原位。"
+    ]
+  },
+  "close_grip_push_up": {
+    "id": "close_grip_push_up",
+    "dataset_id": "0259",
+    "name": "窄握伏地挺身",
+    "english_name": "close-grip push-up",
+    "target_area": "手臂三頭肌、內側胸肌",
+    "tip": "雙手置於胸口下方距離略窄於肩寬，手肘向後收緊貼身，核心繃緊下壓再推起。",
+    "gif": "gifs/close_grip_push_up.gif",
+    "steps": [
+      "雙手手掌撐地距離略窄於肩寬（大拇指與食指可微靠近成心形），全身緊繃成一直線。",
+      "手肘往後方貼緊身體下壓，胸口接近地面停頓1秒。",
+      "三頭肌與內胸發力，將身體垂直推回起始位置。"
+    ]
+  },
+  "dumbbell_sumo_squat": {
+    "id": "dumbbell_sumo_squat",
+    "dataset_id": "0413",
+    "name": "啞鈴相撲深蹲",
+    "english_name": "dumbbell squat",
+    "target_area": "大腿內側（內收肌）、臀大肌",
+    "tip": "雙腳寬站距、腳尖朝外45度，持啞鈴垂於中央，垂直下蹲感受大腿內側與臀肌受力。",
+    "gif": "gifs/dumbbell_sumo_squat.gif",
+    "steps": [
+      "雙腳寬站距約1.5倍肩寬，腳尖向外打開約45度，雙手於兩腿中間垂直握住啞鈴。",
+      "膝蓋沿著腳尖方向打開並垂直下蹲，直到大腿與地面平行，感受大腿內側拉伸。",
+      "大腿內側與臀肌同時發力蹬地站直，頂端用力夾緊臀部。"
+    ]
+  },
+  "single_leg_romanian_deadlift": {
+    "id": "single_leg_romanian_deadlift",
+    "dataset_id": "1757",
+    "name": "單腿羅馬尼亞硬舉",
+    "english_name": "dumbbell single leg deadlift",
+    "target_area": "單側腿後肌、臀部肌群與平衡穩定",
+    "tip": "支撐腳微屈，另一腿順勢向後抬平，身體前傾脊椎延伸，感受單腳支撐與腿後拉伸。",
+    "gif": "gifs/single_leg_romanian_deadlift.gif",
+    "steps": [
+      "單腳站立支撐，膝蓋保持微曲，雙手持啞鈴垂於支撐腳前方。",
+      "支撐腿髖部往後推，另一腿向後方延伸抬起，軀幹平穩前傾如同天平。",
+      "感受支撐側大腿後側拉滿後，靠臀大肌發力將身體拉回直立站姿。"
+    ]
+  },
+  "dumbbell_hip_thrust": {
+    "id": "dumbbell_hip_thrust",
+    "dataset_id": "3523",
+    "name": "啞鈴臀推",
+    "english_name": "glute bridge two legs on bench (male)",
+    "target_area": "臀大肌、大腿後側",
+    "tip": "上背平貼在健身椅邊緣，啞鈴置於髖部，臀部下沉後發力推頂至大腿與軀幹水平。",
+    "gif": "gifs/dumbbell_hip_thrust.gif",
+    "steps": [
+      "上背肩胛骨平靠在健身椅邊緣，雙腳踩地曲膝90度，啞鈴放置於骨盆髖部上方。",
+      "臀部向下沉降至接近地面，隨後腳後跟蹬地、臀肌強力發力推高骨盆。",
+      "推至大腿與軀幹呈水平直線，頂端死命夾緊臀大肌2秒，再慢速下沉。"
+    ]
+  },
+  "calf_raise": {
+    "id": "calf_raise",
+    "dataset_id": "0417",
+    "name": "提踵",
+    "english_name": "dumbbell standing calf raise",
+    "target_area": "小腿肌群（腓腸肌、比目魚肌）",
+    "tip": "雙手持鈴站立，腳尖全力墊起到最高點停頓1-2秒擠壓小腿，緩慢下放。",
+    "gif": "gifs/calf_raise.gif",
+    "steps": [
+      "雙手持啞鈴站立於平地或階梯邊緣，核心收緊保持身體挺拔平衡。",
+      "腳尖用力向下壓地，盡可能將腳後跟墊到最高點，使小腿肌群強烈收縮頂峰。",
+      "在最高點保持停頓1-2秒，隨後緩慢下放腳後跟。"
+    ]
+  }
+}
