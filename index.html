@@ -217,10 +217,287 @@
     .profile-tag {
       background: rgba(59, 130, 246, 0.15);
       color: #93c5fd;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    .tag-cut {
+      background: rgba(249, 115, 22, 0.2) !important;
+      color: #fdba74 !important;
+      border: 1px solid #ea580c;
+    }
+
+    .tag-bulk {
+      background: rgba(139, 92, 246, 0.2) !important;
+      color: #d8b4fe !important;
+      border: 1px solid #8b5cf6;
+    }
+
+    /* Phase Switcher Styles */
+    .phase-switcher-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .phase-switcher-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .phase-switcher-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .phase-switcher-buttons {
+      display: flex;
+      flex: 1;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .phase-btn {
+      flex: 1;
+      min-width: 260px;
+      background: #0d1424;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .phase-btn:hover {
+      border-color: #475569;
+      background: var(--bg-card-hover);
+    }
+
+    .phase-btn.active[data-phase="cut"] {
+      border-color: #f97316;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(15, 22, 38, 0.95));
+      box-shadow: 0 0 16px rgba(249, 115, 22, 0.25);
+    }
+
+    .phase-btn.active[data-phase="bulk"] {
+      border-color: #8b5cf6;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(15, 22, 38, 0.95));
+      box-shadow: 0 0 16px rgba(139, 92, 246, 0.25);
+    }
+
+    .phase-btn-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .phase-btn-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .phase-btn-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .phase-btn-badge {
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #ea580c;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .phase-btn.active[data-phase="bulk"] .phase-btn-badge {
+      background: #7c3aed;
+    }
+
+    .badge-unlocked {
+      background: #059669 !important;
+      color: #fff !important;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    /* 10-Step Adjustable Dumbbell Quick Bar */
+    .dumbbell-quick-bar {
+      margin: 10px 0 6px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px dashed #3b82f6;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cut-badge-bar {
+      border: 1px dashed #ea580c;
+      background: rgba(234, 88, 12, 0.08);
+    }
+
+    .dumbbell-quick-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #93c5fd;
+    }
+
+    .dumbbell-quick-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .btn-dumbbell-pill {
+      background: #1e293b;
+      border: 1px solid #3b82f6;
+      color: #e2e8f0;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-dumbbell-pill:hover {
+      background: #2563eb;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Milestone congrats banner */
+    .congrats-card {
+      margin-top: 14px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1.5px solid #10b981;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #d1fae5;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Goal Settings Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 13, 0.78);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      padding: 24px;
+      transform: scale(0.96);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .form-group-block {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
       font-weight: 600;
-      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .goal-phase-radios {
+      display: flex;
+      gap: 12px;
+    }
+
+    .goal-phase-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .goal-phase-option:hover {
+      border-color: #475569;
+    }
+
+    .goal-phase-option:has(input:checked) {
+      border-color: var(--accent-blue);
+      background: rgba(59, 130, 246, 0.15);
+      color: #fff;
     }
 
     /* ========================================================== */
@@ -859,6 +1136,7 @@
       </div>
     </div>
     <div class="header-actions">
+      <button class="btn btn-sm btn-primary" id="btn-header-goals">🎯 目標設定</button>
       <button class="btn btn-sm" id="btn-export">💾 匯出備份</button>
       <button class="btn btn-sm" id="btn-import">📂 匯入備份</button>
       <input type="file" id="file-import-input" accept=".json" style="display: none;">
@@ -875,15 +1153,45 @@
 
   <!-- Main Container -->
   <main>
+    <!-- Phase Selector Control Bar -->
+    <div class="phase-switcher-container">
+      <div class="phase-switcher-header">
+        <div class="phase-switcher-label">
+          <span>🔄 目前時期與循環：</span>
+        </div>
+        <button class="btn btn-sm btn-primary" id="btn-open-phase-settings">🎯 彈性自訂目標與參數</button>
+      </div>
+      <div class="phase-switcher-buttons">
+        <button class="phase-btn active" id="phase-btn-cut" data-phase="cut">
+          <div class="phase-btn-top">
+            <span class="phase-btn-title" id="phase-title-cut">🔥 減脂期</span>
+            <span class="phase-btn-badge" id="phase-badge-cut">進行中</span>
+          </div>
+          <div class="phase-btn-desc" id="phase-desc-cut">
+            載入中...
+          </div>
+        </button>
+        <button class="phase-btn" id="phase-btn-bulk" data-phase="bulk">
+          <div class="phase-btn-top">
+            <span class="phase-btn-title" id="phase-title-bulk">💪 增肌期</span>
+            <span class="phase-btn-badge" id="bulk-unlocked-badge" style="display: none;">已達標解鎖</span>
+          </div>
+          <div class="phase-btn-desc" id="phase-desc-bulk">
+            載入中...
+          </div>
+        </button>
+      </div>
+    </div>
+
     <!-- Target User Profile Banner -->
     <div class="profile-badge-bar">
       <div class="profile-info">
-        <span class="profile-tag">目標：75 kg / 體脂 15–18%</span>
+        <span class="profile-tag tag-cut" id="banner-phase-badge">🔥 減脂期：目標 64 kg</span>
         <span>當前體重：<strong id="banner-curr-weight">68.0 kg</strong></span>
-        <span>可用器材：8kg 啞鈴×2、單槓、健身椅、滾輪</span>
+        <span id="banner-equipment">現有器材：8kg 啞鈴×2、單槓、健身椅、滾輪</span>
       </div>
       <div>
-        <span style="color: var(--accent-amber); font-weight: 600;">每日熱量：2,400–2,600 kcal · 蛋白質 ~130g</span>
+        <span style="color: var(--accent-amber); font-weight: 600;" id="banner-nutrition-targets">每日熱量：1,800–1,950 kcal · 蛋白質 135–145g</span>
       </div>
     </div>
 
@@ -947,8 +1255,8 @@
         <div class="meals-header">
           <div>
             <h3 style="font-size: 1.15rem; color: #fff;">🥗 今日飲食與蛋白質打卡</h3>
-            <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">
-              目標：2,400–2,600 kcal · 蛋白質 ~130g · 飲水 2,500–3,000ml
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;" id="meals-goal-desc">
+              每日熱量：1,800–1,950 kcal · 蛋白質 135–145g · 飲水 2,500–3,000ml
             </div>
           </div>
           <div style="font-size: 0.9rem; font-weight: 700; color: var(--accent-green);" id="meals-completed-counter">
@@ -968,20 +1276,23 @@
       <div class="progress-grid">
         <!-- Milestone & Weight -->
         <div class="stat-box">
-          <h3 class="section-title">🎯 增肌重組階段里程碑</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">
-            起點 68 kg → 終點目標 75 kg（預計 12–24 個月穩步前進，每週 +0.1~0.2 kg）
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 6px; flex-wrap: wrap;">
+            <h3 class="section-title" id="milestone-title" style="margin-bottom: 0;">🎯 減脂期階段里程碑（68 kg ➔ 64 kg）</h3>
+            <button class="btn btn-sm" id="btn-edit-progress-goal">⚙️ 調整目標</button>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);" id="milestone-desc">
+            起點 68 kg → 減脂目標 64 kg（維持高蛋白抗流失，達到 64 kg 後立即開啟增肌期）
           </p>
           
           <div class="stage-bar-container">
             <div class="stage-bar-fill" id="milestone-progress-fill"></div>
           </div>
-          <div class="stage-markers">
-            <span>68 kg (起點)</span>
-            <span>70 kg</span>
-            <span>72 kg</span>
-            <span>74 kg</span>
-            <span>75 kg (目標)</span>
+          <div class="stage-markers" id="milestone-markers-container">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div class="congrats-card" id="milestone-congrats-card" style="display: none;">
+            <!-- Dynamically populated -->
           </div>
 
           <!-- Weight Logger -->
@@ -995,7 +1306,7 @@
             
             <div style="display: flex; gap: 16px; margin-top: 12px; font-size: 0.88rem;">
               <div>本週平均體重：<strong id="stat-week-avg" style="color: var(--accent-blue); font-size: 1.1rem;">68.0 kg</strong></div>
-              <div>總增重變化：<strong id="stat-total-diff" style="color: var(--accent-green); font-size: 1.1rem;">+0.0 kg</strong></div>
+              <div><span id="stat-total-diff-label">減脂變化：</span><strong id="stat-total-diff" style="color: var(--accent-green); font-size: 1.1rem;">-0.0 kg</strong></div>
             </div>
 
             <!-- Caloric Tuning Advice -->
@@ -1052,6 +1363,100 @@
     </section>
   </main>
 
+  <!-- Goal Settings Modal -->
+  <div class="modal-overlay" id="goal-modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.4rem;">🎯</span>
+          <h3 style="font-size: 1.15rem; color: #fff; margin: 0;">自訂階段訓練目標</h3>
+        </div>
+        <button type="button" class="btn btn-sm" id="btn-close-modal" style="padding: 4px 10px;">✕</button>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">
+        支援多次減脂與增肌循環！在此彈性設定目前週期的起點、目標體重、飲食目標與器材配置，系統會自動更新里程碑進度與建議。
+      </p>
+
+      <form id="goal-settings-form">
+        <!-- 階段選擇 -->
+        <div class="form-group-block">
+          <label class="form-label">週期階段模式</label>
+          <div class="goal-phase-radios">
+            <label class="goal-phase-option">
+              <input type="radio" name="modal-phase" value="cut" id="modal-phase-cut">
+              <span>🔥 減脂期 (Cut)</span>
+            </label>
+            <label class="goal-phase-option">
+              <input type="radio" name="modal-phase" value="bulk" id="modal-phase-bulk">
+              <span>💪 增肌期 (Bulk)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 體重設定 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label class="form-label">起點體重 (kg)</label>
+            <input type="number" step="0.1" class="input-text" id="modal-start-kg" required style="width: 100%;">
+            <button type="button" class="btn btn-sm" id="btn-fill-latest-weight" style="margin-top: 6px; width: 100%; font-size: 0.75rem;">
+              ⚡ 帶入最新體重 (<span id="modal-latest-weight-val">68.0</span> kg)
+            </button>
+          </div>
+          <div>
+            <label class="form-label">目標體重 (kg)</label>
+            <input type="number" step="0.1" class="input-text" id="modal-target-kg" required style="width: 100%;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 6px;" id="modal-weight-hint">
+              減脂目標 &lt; 起點；增肌目標 &gt; 起點
+            </div>
+          </div>
+        </div>
+
+        <!-- 飲食目標 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label class="form-label">每日目標熱量</label>
+            <input type="text" class="input-text" id="modal-daily-calories" placeholder="例: 1,800 – 1,950 kcal" style="width: 100%;">
+          </div>
+          <div>
+            <label class="form-label">每日蛋白質目標</label>
+            <input type="text" class="input-text" id="modal-daily-protein" placeholder="例: 135 – 145 g" style="width: 100%;">
+          </div>
+        </div>
+
+        <!-- 器材與組數 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px;">
+          <div>
+            <label class="form-label">啞鈴器材規格</label>
+            <select class="input-text" id="modal-dumbbell-type" style="width: 100%;">
+              <option value="fixed">現有 8 kg 固定啞鈴 × 2</option>
+              <option value="adjustable_lbs">10 段可調式啞鈴 (9~55 LBS)</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">預設動作組數</label>
+            <select class="input-text" id="modal-target-sets" style="width: 100%;">
+              <option value="3">3 組（減脂保肌 / 基礎）</option>
+              <option value="4">4 組（肌肥大超負荷）</option>
+              <option value="5">5 組（高容量強化）</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 底部按鈕 -->
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+          <button type="button" class="btn btn-sm" id="btn-reset-modal-phase" style="color: var(--text-muted);">
+            🔄 還原該模式預設
+          </button>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn btn-sm" id="btn-cancel-modal">取消</button>
+            <button type="submit" class="btn btn-sm btn-primary">💾 儲存並套用目標</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Toast Notification element -->
   <div class="toast" id="app-toast">操作完成</div>
 
@@ -1062,7 +1467,28 @@
       const STORAGE_KEY = 'workout_planner_data_v1';
       
       const defaultState = {
-        version: 1,
+        version: 2,
+        currentPhase: 'cut', // 'cut' (減脂期) 或 'bulk' (增肌期)
+        phaseGoals: {
+          cut: {
+            startKg: 68.0,
+            targetKg: 64.0,
+            dailyCalories: '1,800 – 1,950 kcal',
+            dailyProtein: '135 – 145 g',
+            water: '2,500 – 3,000 ml',
+            dumbbellType: 'fixed',
+            targetSets: 3
+          },
+          bulk: {
+            startKg: 64.0,
+            targetKg: 75.0,
+            dailyCalories: '2,400 – 2,600 kcal',
+            dailyProtein: '125 – 135 g',
+            water: '2,500 – 3,000 ml',
+            dumbbellType: 'adjustable_lbs',
+            targetSets: 4
+          }
+        },
         logs: {},
         progression: {},
         bodyweight: [
@@ -1080,6 +1506,13 @@
           const raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return defaultState;
           const parsed = JSON.parse(raw);
+          if (!parsed.currentPhase) parsed.currentPhase = 'cut';
+          if (!parsed.phaseGoals) {
+            parsed.phaseGoals = JSON.parse(JSON.stringify(defaultState.phaseGoals));
+          } else {
+            if (!parsed.phaseGoals.cut) parsed.phaseGoals.cut = JSON.parse(JSON.stringify(defaultState.phaseGoals.cut));
+            if (!parsed.phaseGoals.bulk) parsed.phaseGoals.bulk = JSON.parse(JSON.stringify(defaultState.phaseGoals.bulk));
+          }
           if (!parsed.logs) parsed.logs = {};
           if (!parsed.progression) parsed.progression = {};
           if (!parsed.bodyweight) parsed.bodyweight = [];
@@ -1089,6 +1522,38 @@
           console.error('Failed to parse localStorage data:', e);
           return defaultState;
         }
+      }
+
+      function getActivePhaseConfig(phase = 'cut') {
+        const base = getPhaseConfig(phase);
+        const custom = (appState.phaseGoals && appState.phaseGoals[phase]) || {};
+        const startKg = typeof custom.startKg === 'number' ? custom.startKg : base.startKg;
+        const targetKg = typeof custom.targetKg === 'number' ? custom.targetKg : base.targetKg;
+        const dailyCalories = custom.dailyCalories || base.dailyCalories;
+        const dailyProtein = custom.dailyProtein || base.dailyProtein;
+        const water = custom.water || base.water;
+        const dumbbellType = custom.dumbbellType || base.dumbbellType;
+        const targetSets = custom.targetSets || base.targetSetsDefault;
+
+        const isLbs = dumbbellType === 'adjustable_lbs';
+        const equipmentText = isLbs
+          ? '升級器材：10 段可調式啞鈴 (9~55 LBS)、單槓、健身椅、滾輪'
+          : '現有器材：8 kg 固定啞鈴 × 2、單槓、健身椅、滾輪';
+
+        return {
+          ...base,
+          startKg,
+          targetKg,
+          targetRange: `${startKg.toFixed(1)} kg ➔ ${targetKg.toFixed(1)} kg`,
+          dailyCalories,
+          dailyProtein,
+          water,
+          dumbbellType,
+          dumbbellUnit: isLbs ? 'lbs' : 'kg',
+          targetSetsDefault: targetSets,
+          equipmentText,
+          nutritionSummary: `每日熱量：${dailyCalories} · 蛋白質 ${dailyProtein} · 飲水 ${water}`
+        };
       }
 
       function saveState() {
@@ -1107,6 +1572,70 @@
           toast.style.display = 'none';
         }, 2200);
       }
+
+      function updateProfileBanner() {
+        const curPhase = appState.currentPhase || 'cut';
+        const cfg = getActivePhaseConfig(curPhase);
+        const cutCfg = getActivePhaseConfig('cut');
+        const bulkCfg = getActivePhaseConfig('bulk');
+
+        const bannerBadge = document.getElementById('banner-phase-badge');
+        const bannerEquipment = document.getElementById('banner-equipment');
+        const bannerNutrition = document.getElementById('banner-nutrition-targets');
+
+        if (bannerBadge) {
+          bannerBadge.textContent = `${cfg.badge}：目標 ${cfg.targetKg.toFixed(1)} kg`;
+          bannerBadge.className = `profile-tag ${curPhase === 'bulk' ? 'tag-bulk' : 'tag-cut'}`;
+        }
+        if (bannerEquipment) {
+          bannerEquipment.textContent = cfg.equipmentText;
+        }
+        if (bannerNutrition) {
+          bannerNutrition.textContent = cfg.nutritionSummary;
+        }
+
+        // Update Phase Selector Button Descriptions & Badges
+        const descCut = document.getElementById('phase-desc-cut');
+        if (descCut) {
+          descCut.textContent = `目標：${cutCfg.targetRange} · ${cutCfg.dumbbellType === 'fixed' ? '8kg 啞鈴' : '可調啞鈴'} · ${cutCfg.targetSetsDefault}組 · ${cutCfg.dailyCalories} · 蛋白質 ${cutCfg.dailyProtein}`;
+        }
+        const descBulk = document.getElementById('phase-desc-bulk');
+        if (descBulk) {
+          descBulk.textContent = `目標：${bulkCfg.targetRange} · ${bulkCfg.dumbbellType === 'fixed' ? '8kg 啞鈴' : '可調啞鈴'} · ${bulkCfg.targetSetsDefault}組 · ${bulkCfg.dailyCalories} · 蛋白質 ${bulkCfg.dailyProtein}`;
+        }
+
+        // Update Phase Selector Buttons Active State
+        document.querySelectorAll('.phase-btn').forEach(btn => {
+          const p = btn.getAttribute('data-phase');
+          btn.classList.toggle('active', p === curPhase);
+        });
+
+        // Check if latest weight unlocked bulk mode
+        const weights = appState.bodyweight || [];
+        let latestWeight = cfg.startKg;
+        if (weights.length > 0) latestWeight = weights[weights.length - 1].kg;
+        const bulkBadge = document.getElementById('bulk-unlocked-badge');
+        if (bulkBadge) {
+          bulkBadge.style.display = latestWeight <= cutCfg.targetKg ? 'inline-block' : 'none';
+        }
+      }
+
+      // Bind Phase Switcher Buttons
+      document.querySelectorAll('.phase-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const phase = btn.getAttribute('data-phase');
+          if (appState.currentPhase !== phase) {
+            appState.currentPhase = phase;
+            saveState();
+            updateProfileBanner();
+            renderCalendar();
+            renderDailyView();
+            renderProgressView();
+            const targetConfig = getActivePhaseConfig(phase);
+            showToast(phase === 'cut' ? `🔥 已切換為減脂期模式 (${targetConfig.targetRange})` : `💪 已切換為增肌期模式 (${targetConfig.targetRange})`);
+          }
+        });
+      });
 
       // 2. Active Session View State
       let currentDate = new Date();
@@ -1184,9 +1713,10 @@
       });
 
       function getCompletionStatus(dateKey) {
+        const curPhase = appState.currentPhase || 'cut';
         const dayLog = appState.logs[dateKey];
         const dateObj = parseDateKey(dateKey);
-        const split = getSplitForDate(dateObj);
+        const split = getSplitForDate(dateObj, curPhase);
 
         if (split.type === 'rest') {
           return 'completed';
@@ -1220,6 +1750,7 @@
       }
 
       function renderCalendar() {
+        const curPhase = appState.currentPhase || 'cut';
         calMonthYear.textContent = `${calendarViewYear} 年 ${calendarViewMonth + 1} 月`;
         calDaysContainer.innerHTML = '';
 
@@ -1246,7 +1777,7 @@
         for (let day = 1; day <= totalDays; day++) {
           const thisDate = new Date(calendarViewYear, calendarViewMonth, day);
           const dateKey = formatDateKey(thisDate);
-          const split = getSplitForDate(thisDate);
+          const split = getSplitForDate(thisDate, curPhase);
           const status = getCompletionStatus(dateKey);
 
           const cell = document.createElement('div');
@@ -1338,9 +1869,11 @@
       }
 
       function renderDailyView() {
+        const curPhase = appState.currentPhase || 'cut';
+        const phaseCfg = getPhaseConfig(curPhase);
         const dateKey = formatDateKey(selectedDate);
         const dayNames = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-        const split = getSplitForDate(selectedDate);
+        const split = getSplitForDate(selectedDate, curPhase);
 
         dailyDisplayDate.textContent = `${selectedDate.getFullYear()}年${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日 ${dayNames[selectedDate.getDay()]}`;
         dailySplitPill.textContent = split.title;
@@ -1378,8 +1911,11 @@
               <div style="font-size: 3rem; margin-bottom: 8px;">🏃‍♂️</div>
               <h3 style="font-size: 1.35rem; color: #fff; margin-bottom: 6px;">${split.title}</h3>
               <p style="color: #67e8f9; font-weight: 600; margin-bottom: 10px;">${split.cardioDetail.intensity}</p>
-              <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 16px;">
+              <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 8px;">
                 建議運動項目：${split.cardioDetail.options.join(' · ')}
+              </p>
+              <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 16px;">
+                建議時長：<strong>${split.cardioDetail.duration}</strong>（${curPhase === 'cut' ? '減脂期加強有氧熱量赤字' : '增肌期維持心肺與恢復'}）
               </p>
               <button class="cardio-done-btn ${isDone ? 'active' : ''}" id="btn-toggle-cardio">
                 ${isDone ? '✅ 今日有氧已完成！' : '打勾標記完成有氧'}
@@ -1411,7 +1947,8 @@
               appState.progression[exId] = { stageIndex: 0 };
             }
             const curStageIndex = appState.progression[exId].stageIndex;
-            const curProgression = PROGRESSION_LADDER[curStageIndex] || PROGRESSION_LADDER[0];
+            const progressionLadder = phaseCfg.progressionLadder || PROGRESSION_LADDER;
+            const curProgression = progressionLadder[curStageIndex] || progressionLadder[0];
 
             // Check if overload upgrade is recommended
             const isUpgradeEligible = !targetEx.asManyAsPossible && checkProgressiveOverloadEligibility(exId, targetEx.maxReps);
@@ -1421,13 +1958,66 @@
               dayLog.exercises[exId] = { sets: [] };
               for (let i = 0; i < targetEx.targetSets; i++) {
                 dayLog.exercises[exId].sets.push({
-                  weight: targetEx.defaultWeight || 8,
+                  weight: targetEx.defaultWeight || (curPhase === 'cut' ? 8 : 20),
                   reps: targetEx.minReps,
                   done: false
                 });
               }
             }
             const setsData = dayLog.exercises[exId].sets;
+            const weightUnit = targetEx.weightUnit || (curPhase === 'bulk' && targetEx.isDumbbell ? 'lbs' : 'kg');
+
+            // Build Overload Alert HTML
+            let alertHtml = '';
+            if (isUpgradeEligible) {
+              if (curPhase === 'bulk' && targetEx.isDumbbell) {
+                const curW = setsData[0]?.weight || 20;
+                const idx = ADJUSTABLE_DUMBBELL_LBS.indexOf(curW);
+                const nextLbs = idx >= 0 && idx < ADJUSTABLE_DUMBBELL_LBS.length - 1 ? ADJUSTABLE_DUMBBELL_LBS[idx + 1] : null;
+                alertHtml = `
+                  <div class="progression-alert">
+                    <div class="progression-alert-text">
+                      🔥 <strong>達成增肌超負荷標準！</strong> 上次訓練中所有組數均達到 ${targetEx.maxReps} 下上限。<br>
+                      建議啞鈴升重至下一段：<strong>${nextLbs ? nextLbs + ' LBS' : '更高重量'}</strong>（目前使用 ${curW} LBS），或進階至下一超負荷階梯！
+                    </div>
+                    ${curStageIndex < progressionLadder.length - 1 ? `<button class="btn btn-sm btn-success" data-action="upgrade" data-ex="${exId}">採納升級</button>` : ''}
+                  </div>
+                `;
+              } else if (curStageIndex < progressionLadder.length - 1) {
+                alertHtml = `
+                  <div class="progression-alert">
+                    <div class="progression-alert-text">
+                      🔥 <strong>達成升級標準！</strong> 上次訓練中所有組數均達到 ${targetEx.maxReps} 下上限。<br>
+                      建議進階至下一階：<strong>${progressionLadder[curStageIndex + 1].name}</strong> — ${progressionLadder[curStageIndex + 1].instruction}
+                    </div>
+                    <button class="btn btn-sm btn-success" data-action="upgrade" data-ex="${exId}">採納升級</button>
+                  </div>
+                `;
+              }
+            }
+
+            // Dumbbell Quick Select Bar
+            let dumbbellBarHtml = '';
+            if (targetEx.isDumbbell) {
+              if (curPhase === 'bulk') {
+                dumbbellBarHtml = `
+                  <div class="dumbbell-quick-bar">
+                    <span class="dumbbell-quick-label">🎛️ 10段可調啞鈴快速選重 (LBS)：</span>
+                    <div class="dumbbell-quick-pills">
+                      ${ADJUSTABLE_DUMBBELL_LBS.map(lbs => `
+                        <button type="button" class="btn-dumbbell-pill" data-lbs="${lbs}" data-ex="${exId}">${lbs}</button>
+                      `).join('')}
+                    </div>
+                  </div>
+                `;
+              } else {
+                dumbbellBarHtml = `
+                  <div class="dumbbell-quick-bar cut-badge-bar">
+                    <span class="dumbbell-quick-label" style="color: #fdba74;">🏋️ 現用器材：8 kg 固定啞鈴 × 2（減脂期專注標準軌跡與慢速離心）</span>
+                  </div>
+                `;
+              }
+            }
 
             const card = document.createElement('div');
             card.className = 'exercise-card';
@@ -1448,15 +2038,7 @@
                 </div>
               </div>
 
-              ${isUpgradeEligible && curStageIndex < PROGRESSION_LADDER.length - 1 ? `
-                <div class="progression-alert">
-                  <div class="progression-alert-text">
-                    🔥 <strong>達成升級標準！</strong> 上次訓練中所有組數均達到 ${targetEx.maxReps} 下上限。<br>
-                    建議進階至下一階：<strong>${PROGRESSION_LADDER[curStageIndex + 1].name}</strong> — ${PROGRESSION_LADDER[curStageIndex + 1].instruction}
-                  </div>
-                  <button class="btn btn-sm btn-success" data-action="upgrade" data-ex="${exId}">採納升級</button>
-                </div>
-              ` : ''}
+              ${alertHtml}
 
               <div class="exercise-body-grid">
                 <div class="gif-container">
@@ -1466,7 +2048,7 @@
                 <div class="exercise-details">
                   <div class="exercise-target-line">
                     <span>🎯 目標：${targetEx.targetSets} 組 × ${targetEx.asManyAsPossible ? '盡可能多次' : `${targetEx.minReps}–${targetEx.maxReps} 下`}</span>
-                    <span style="font-size: 0.78rem; color: var(--text-muted);">（${targetEx.note || 'RIR 1–3，留餘力不力竭'}）</span>
+                    <span style="font-size: 0.78rem; color: var(--text-muted);">（${targetEx.note || 'RIR 1–2，留餘力不力竭'}）</span>
                   </div>
 
                   <div class="steps-box">
@@ -1476,13 +2058,15 @@
                     </ol>
                   </div>
 
+                  ${dumbbellBarHtml}
+
                   <!-- Sets Table -->
                   <div class="sets-table-wrapper">
                     <table class="sets-table">
                       <thead>
                         <tr>
                           <th>組別</th>
-                          <th>重量 (kg)</th>
+                          <th>重量 (${weightUnit})</th>
                           <th>次數</th>
                           <th>打卡狀態</th>
                         </tr>
@@ -1520,6 +2104,22 @@
             dailyWorkoutContainer.appendChild(card);
           });
 
+          // Bind Dumbbell Quick Pill Click Events
+          dailyWorkoutContainer.querySelectorAll('.btn-dumbbell-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+              const exId = pill.getAttribute('data-ex');
+              const lbs = parseFloat(pill.getAttribute('data-lbs'));
+              if (dayLog.exercises[exId] && dayLog.exercises[exId].sets) {
+                dayLog.exercises[exId].sets.forEach(s => {
+                  s.weight = lbs;
+                });
+                saveState();
+                renderDailyView();
+                showToast(`已套用啞鈴重量：${lbs} LBS`);
+              }
+            });
+          });
+
           // Bind Exercise Card Interactive Events
           dailyWorkoutContainer.querySelectorAll('.set-weight').forEach(input => {
             input.addEventListener('change', (e) => {
@@ -1552,7 +2152,7 @@
                 renderDailyView();
                 renderCalendar();
               } else if (action === 'add-set') {
-                const prev = dayLog.exercises[exId].sets[dayLog.exercises[exId].sets.length - 1] || { weight: 8, reps: 10 };
+                const prev = dayLog.exercises[exId].sets[dayLog.exercises[exId].sets.length - 1] || { weight: curPhase === 'cut' ? 8 : 20, reps: 10 };
                 dayLog.exercises[exId].sets.push({ weight: prev.weight, reps: prev.reps, done: false });
                 saveState();
                 renderDailyView();
@@ -1571,7 +2171,8 @@
                 appState.progression[exId].stageIndex++;
                 saveState();
                 renderDailyView();
-                showToast(`🚀 已成功晉升至：${PROGRESSION_LADDER[appState.progression[exId].stageIndex].name}`);
+                const ladder = phaseCfg.progressionLadder || PROGRESSION_LADDER;
+                showToast(`🚀 已成功晉升至：${ladder[appState.progression[exId].stageIndex]?.name || '下一階'}`);
               }
             });
           });
@@ -1582,8 +2183,14 @@
       }
 
       function renderMeals(dayLog) {
+        const curPhase = appState.currentPhase || 'cut';
+        const phaseCfg = getPhaseConfig(curPhase);
         const mealsList = document.getElementById('meals-list');
         const counter = document.getElementById('meals-completed-counter');
+        const goalDesc = document.getElementById('meals-goal-desc');
+        if (goalDesc) {
+          goalDesc.textContent = `${phaseCfg.nutritionSummary} · ${phaseCfg.nutritionNote}`;
+        }
         mealsList.innerHTML = '';
 
         if (!dayLog.meals) {
@@ -1591,8 +2198,9 @@
         }
 
         let completedMeals = 0;
+        const templates = phaseCfg.mealTemplates || MEAL_TEMPLATES;
 
-        MEAL_TEMPLATES.forEach(meal => {
+        templates.forEach(meal => {
           const isChecked = !!dayLog.meals[meal.id];
           if (isChecked) completedMeals++;
 
@@ -1629,14 +2237,17 @@
           mealsList.appendChild(row);
         });
 
-        counter.textContent = `今日已打卡 ${completedMeals} / ${MEAL_TEMPLATES.length} 餐`;
+        counter.textContent = `今日已打卡 ${completedMeals} / ${templates.length} 餐`;
       }
 
       // 6. Progress View Logic
       function renderProgressView() {
-        // Milestone Progress Bar (68 -> 75 kg)
+        const curPhase = appState.currentPhase || 'cut';
+        const cfg = getActivePhaseConfig(curPhase);
+        const isCut = cfg.targetKg < cfg.startKg;
+
         const weights = appState.bodyweight || [];
-        let latestWeight = 68.0;
+        let latestWeight = cfg.startKg;
         if (weights.length > 0) {
           latestWeight = weights[weights.length - 1].kg;
         }
@@ -1657,16 +2268,87 @@
         }
         document.getElementById('stat-week-avg').textContent = `${weekAvg.toFixed(1)} kg`;
 
-        const totalDiff = weekAvg - 68.0;
-        const diffText = totalDiff >= 0 ? `+${totalDiff.toFixed(1)} kg` : `${totalDiff.toFixed(1)} kg`;
-        document.getElementById('stat-total-diff').textContent = diffText;
+        // Milestone Title and Description
+        const milestoneTitle = document.getElementById('milestone-title');
+        if (milestoneTitle) {
+          milestoneTitle.textContent = `🎯 ${cfg.name}階段里程碑（${cfg.startKg.toFixed(1)} kg ➔ ${cfg.targetKg.toFixed(1)} kg）`;
+        }
+        const milestoneDesc = document.getElementById('milestone-desc');
+        if (milestoneDesc) {
+          milestoneDesc.textContent = `起點 ${cfg.startKg.toFixed(1)} kg → 目標 ${cfg.targetKg.toFixed(1)} kg（${isCut ? '維持充足蛋白質抗流失，達標後可開啟增肌期或自訂新目標' : '熱量盈餘超負荷，達標後可開啟精實減脂或自訂新目標'}）`;
+        }
 
-        // Progress bar percentage (from 68 to 75 is 7 kg)
-        const percent = Math.min(100, Math.max(0, ((weekAvg - 68.0) / (75.0 - 68.0)) * 100));
-        document.getElementById('milestone-progress-fill').style.width = `${percent.toFixed(1)}%`;
+        // Dynamic 5 Milestone Markers
+        const markersContainer = document.getElementById('milestone-markers-container');
+        if (markersContainer) {
+          markersContainer.innerHTML = '';
+          for (let i = 0; i <= 4; i++) {
+            const stepVal = cfg.startKg + (cfg.targetKg - cfg.startKg) * (i / 4);
+            const span = document.createElement('span');
+            if (i === 0) span.textContent = `${stepVal.toFixed(1)} kg (起點)`;
+            else if (i === 4) span.textContent = `${stepVal.toFixed(1)} kg (目標)`;
+            else span.textContent = `${stepVal.toFixed(1)} kg`;
+            markersContainer.appendChild(span);
+          }
+        }
+
+        // Progress Bar Percentage & Diff calculation
+        const totalSpan = Math.abs(cfg.targetKg - cfg.startKg);
+        let percent = 0;
+        let diffFromStart = 0;
+        let isTargetReached = false;
+
+        const diffLabel = document.getElementById('stat-total-diff-label');
+        if (isCut) {
+          diffFromStart = weekAvg - cfg.startKg;
+          const progressLost = cfg.startKg - weekAvg;
+          percent = totalSpan > 0 ? Math.min(100, Math.max(0, (progressLost / totalSpan) * 100)) : 0;
+          isTargetReached = (weekAvg <= cfg.targetKg) || (latestWeight <= cfg.targetKg);
+
+          if (diffLabel) diffLabel.textContent = '減脂進度：';
+
+          const diffText = diffFromStart <= 0 ? `已減 ${Math.abs(diffFromStart).toFixed(1)} kg` : `+${diffFromStart.toFixed(1)} kg`;
+          const remText = isTargetReached ? '（已達標！🎉）' : `（距目標差 ${Math.max(0, weekAvg - cfg.targetKg).toFixed(1)} kg）`;
+          document.getElementById('stat-total-diff').textContent = `${diffText} ${remText}`;
+        } else {
+          diffFromStart = weekAvg - cfg.startKg;
+          const progressGained = weekAvg - cfg.startKg;
+          percent = totalSpan > 0 ? Math.min(100, Math.max(0, (progressGained / totalSpan) * 100)) : 0;
+          isTargetReached = (weekAvg >= cfg.targetKg) || (latestWeight >= cfg.targetKg);
+
+          if (diffLabel) diffLabel.textContent = '增肌進度：';
+
+          const diffText = diffFromStart >= 0 ? `已增 +${diffFromStart.toFixed(1)} kg` : `${diffFromStart.toFixed(1)} kg`;
+          const remText = isTargetReached ? '（已達標！🎉）' : `（距目標差 ${Math.max(0, cfg.targetKg - weekAvg).toFixed(1)} kg）`;
+          document.getElementById('stat-total-diff').textContent = `${diffText} ${remText}`;
+        }
+
+        const barFill = document.getElementById('milestone-progress-fill');
+        if (barFill) barFill.style.width = `${percent.toFixed(1)}%`;
+
+        // Milestone Congratulations Banner
+        const congratsCard = document.getElementById('milestone-congrats-card');
+        if (congratsCard) {
+          if (isTargetReached) {
+            congratsCard.style.display = 'block';
+            if (isCut) {
+              congratsCard.innerHTML = `
+                🎉 <strong>恭喜達成 ${cfg.targetKg.toFixed(1)} kg 減脂目標！</strong> 體脂肪精實到位，線條分明！<br>
+                隨時可切換至【💪 增肌期】或點擊「⚙️ 調整目標」開啟下一輪循環！
+              `;
+            } else {
+              congratsCard.innerHTML = `
+                🎉 <strong>恭喜達成 ${cfg.targetKg.toFixed(1)} kg 增肌目標！</strong> 力量與維度顯著成長！<br>
+                隨時可切換至【🔥 減脂期】進行精實雕塑，或點擊「⚙️ 調整目標」挑戰更高里程碑！
+              `;
+            }
+          } else {
+            congratsCard.style.display = 'none';
+          }
+        }
 
         // Caloric Tuning Advice Logic
-        renderCaloricAdvice(weights);
+        renderCaloricAdvice(weights, isCut, cfg);
 
         // Render SVG Line Chart
         renderWeightChart(weights);
@@ -1678,12 +2360,13 @@
         renderStrengthRecords();
       }
 
-      function renderCaloricAdvice(weights) {
+      function renderCaloricAdvice(weights, isCut, cfg) {
         const adviceBox = document.getElementById('caloric-advice-box');
         if (!weights || weights.length < 3) {
           adviceBox.innerHTML = `
             💡 <strong>熱量微調提醒：</strong> 剛開始記錄中。建議每週記錄 3–4 次晨起空腹體重，系統將在累計滿 2 週後自動給予熱量微調建議。
           `;
+          adviceBox.style.borderColor = 'var(--border-color)';
           return;
         }
 
@@ -1691,37 +2374,59 @@
         const sorted = [...weights].sort((a, b) => a.date.localeCompare(b.date));
         const firstDate = new Date(sorted[0].date);
         const lastDate = new Date(sorted[sorted.length - 1].date);
-        const daySpan = Math.round((lastDate - firstDate) / (1000 * 3600 * 24));
+        const daySpan = Math.max(1, Math.round((lastDate - firstDate) / (1000 * 3600 * 24)));
 
         if (daySpan < 14) {
           adviceBox.innerHTML = `
-            ✅ <strong>體重追蹤中：</strong> 目前記錄累計 ${daySpan} 天，平均體重穩定維持。請持續落實每日 2,400–2,600 kcal 與蛋白質目標！
+            ✅ <strong>體重追蹤中：</strong> 目前記錄累計 ${daySpan} 天，體重穩定追蹤中。請持續落實每日 ${cfg.dailyCalories} 與蛋白質 ${cfg.dailyProtein} 目標！
           `;
+          adviceBox.style.borderColor = 'var(--border-color)';
           return;
         }
 
-        // Calculate rate of gain
+        // Calculate rate of gain/loss
         const totalGain = sorted[sorted.length - 1].kg - sorted[0].kg;
         const weeks = daySpan / 7;
-        const gainPerWeek = totalGain / weeks;
+        const ratePerWeek = totalGain / weeks;
 
-        if (gainPerWeek <= 0.05) {
-          adviceBox.innerHTML = `
-            ⚠️ <strong>熱量微調提醒：</strong> 觀察到近幾週體重增加停滯（增幅 ≤ 0.05 kg/週）。<br>
-            <strong>建議方案：</strong> 每日熱量<strong>增加 150–200 kcal</strong>（例如下午多加半碗飯、1 根香蕉或 1 杯豆漿）。
-          `;
-          adviceBox.style.borderColor = '#ea580c';
-        } else if (gainPerWeek > 0.4) {
-          adviceBox.innerHTML = `
-            ⚠️ <strong>熱量微調提醒：</strong> 近期每週增加達 <strong>${gainPerWeek.toFixed(2)} kg</strong>（超出理想範圍 >0.4 kg/週），可能有較多脂肪堆積。<br>
-            <strong>建議方案：</strong> 每日熱量<strong>減少 150–200 kcal</strong>，維持紮實增肌速度（理想節奏為每月 +0.5 kg）。
-          `;
-          adviceBox.style.borderColor = '#ef4444';
+        if (isCut) {
+          if (ratePerWeek >= -0.05) {
+            adviceBox.innerHTML = `
+              ⚠️ <strong>減脂熱量微調提醒：</strong> 近期體重下降停滯（每週變化 ${ratePerWeek >= 0 ? '+' : ''}${ratePerWeek.toFixed(2)} kg）。<br>
+              <strong>建議方案：</strong> 每日熱量<strong>微幅減少 150–200 kcal</strong>（例如晚餐澱粉減 1/3 碗或減少烹調用油），或將 Zone 2 有氧增加 10–15 分鐘以擴大赤字。
+            `;
+            adviceBox.style.borderColor = '#ea580c';
+          } else if (ratePerWeek < -0.8) {
+            adviceBox.innerHTML = `
+              ⚠️ <strong>減脂熱量微調提醒：</strong> 近期每週減重達 <strong>${Math.abs(ratePerWeek).toFixed(2)} kg</strong>（下降過快 >0.8 kg/週），可能有肌肉流失風險。<br>
+              <strong>建議方案：</strong> 每日熱量<strong>增加約 100–150 kcal</strong> 優質碳水或蛋白質，減緩掉重速度以保全肌肉。
+            `;
+            adviceBox.style.borderColor = '#ef4444';
+          } else {
+            adviceBox.innerHTML = `
+              🎉 <strong>減脂進展極佳：</strong> 目前平均每週減重約 <strong>${Math.abs(ratePerWeek).toFixed(2)} kg</strong>，完全符合精實減脂且最大限度保留肌肉的黃金速度！請繼續保持。
+            `;
+            adviceBox.style.borderColor = '#10b981';
+          }
         } else {
-          adviceBox.innerHTML = `
-            🎉 <strong>熱量微調提醒：</strong> 目前平均每週增加約 <strong>${gainPerWeek.toFixed(2)} kg</strong>，完全契合每月約 +0.5 kg 的黃金重組速度！繼續保持當前飲食節奏。
-          `;
-          adviceBox.style.borderColor = '#10b981';
+          if (ratePerWeek <= 0.05) {
+            adviceBox.innerHTML = `
+              ⚠️ <strong>增肌熱量微調提醒：</strong> 近期體重增加停滯（每週變化 ${ratePerWeek >= 0 ? '+' : ''}${ratePerWeek.toFixed(2)} kg）。<br>
+              <strong>建議方案：</strong> 每日熱量<strong>增加 150–200 kcal</strong>（例如下午點心多加半碗飯、1 根香蕉或 1 杯無糖豆漿）以維持微幅熱量盈餘。
+            `;
+            adviceBox.style.borderColor = '#ea580c';
+          } else if (ratePerWeek > 0.4) {
+            adviceBox.innerHTML = `
+              ⚠️ <strong>增肌熱量微調提醒：</strong> 近期每週增加達 <strong>${ratePerWeek.toFixed(2)} kg</strong>（超出理想範圍 >0.4 kg/週），可能有較多脂肪堆積。<br>
+              <strong>建議方案：</strong> 每日熱量<strong>減少 150–200 kcal</strong>，維持每月約 +0.5 kg 的精實增肌節奏。
+            `;
+            adviceBox.style.borderColor = '#ef4444';
+          } else {
+            adviceBox.innerHTML = `
+              🎉 <strong>增肌進展極佳：</strong> 目前平均每週增加約 <strong>${ratePerWeek.toFixed(2)} kg</strong>，契合精實增肌的黃金重組速度！請繼續保持訓練與營養節奏。
+            `;
+            adviceBox.style.borderColor = '#10b981';
+          }
         }
       }
 
@@ -1921,6 +2626,7 @@
             }
             appState = imported;
             saveState();
+            updateProfileBanner();
             renderCalendar();
             renderDailyView();
             renderProgressView();
@@ -1932,11 +2638,141 @@
         reader.readAsText(file);
       });
 
+      // 8. Goal Settings Modal Logic
+      const modalOverlay = document.getElementById('goal-modal-overlay');
+      const modalForm = document.getElementById('goal-settings-form');
+      let modalActivePhase = 'cut';
+
+      function openGoalModal(phaseToEdit) {
+        modalActivePhase = phaseToEdit || appState.currentPhase || 'cut';
+        const cfg = getActivePhaseConfig(modalActivePhase);
+
+        // Set radio buttons
+        const radioCut = document.getElementById('modal-phase-cut');
+        const radioBulk = document.getElementById('modal-phase-bulk');
+        if (modalActivePhase === 'bulk') {
+          radioBulk.checked = true;
+        } else {
+          radioCut.checked = true;
+        }
+
+        // Populate fields
+        document.getElementById('modal-start-kg').value = cfg.startKg;
+        document.getElementById('modal-target-kg').value = cfg.targetKg;
+        document.getElementById('modal-daily-calories').value = cfg.dailyCalories;
+        document.getElementById('modal-daily-protein').value = cfg.dailyProtein;
+        document.getElementById('modal-dumbbell-type').value = cfg.dumbbellType;
+        document.getElementById('modal-target-sets').value = String(cfg.targetSetsDefault || 3);
+
+        // Update latest weight helper button label
+        const weights = appState.bodyweight || [];
+        const latestW = weights.length > 0 ? weights[weights.length - 1].kg : cfg.startKg;
+        document.getElementById('modal-latest-weight-val').textContent = latestW.toFixed(1);
+
+        modalOverlay.classList.add('active');
+      }
+
+      function closeGoalModal() {
+        modalOverlay.classList.remove('active');
+      }
+
+      // Switch phase radio inside modal
+      document.querySelectorAll('input[name="modal-phase"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          modalActivePhase = e.target.value;
+          const cfg = getActivePhaseConfig(modalActivePhase);
+          document.getElementById('modal-start-kg').value = cfg.startKg;
+          document.getElementById('modal-target-kg').value = cfg.targetKg;
+          document.getElementById('modal-daily-calories').value = cfg.dailyCalories;
+          document.getElementById('modal-daily-protein').value = cfg.dailyProtein;
+          document.getElementById('modal-dumbbell-type').value = cfg.dumbbellType;
+          document.getElementById('modal-target-sets').value = String(cfg.targetSetsDefault || 3);
+        });
+      });
+
+      // Fill latest weight button
+      document.getElementById('btn-fill-latest-weight').addEventListener('click', () => {
+        const weights = appState.bodyweight || [];
+        if (weights.length > 0) {
+          const latest = weights[weights.length - 1].kg;
+          document.getElementById('modal-start-kg').value = latest.toFixed(1);
+          showToast(`已填入最新體重：${latest.toFixed(1)} kg 作為新起點`);
+        } else {
+          showToast('目前尚無記錄體重');
+        }
+      });
+
+      // Reset phase to defaults
+      document.getElementById('btn-reset-modal-phase').addEventListener('click', () => {
+        const base = getPhaseConfig(modalActivePhase);
+        document.getElementById('modal-start-kg').value = base.startKg;
+        document.getElementById('modal-target-kg').value = base.targetKg;
+        document.getElementById('modal-daily-calories').value = base.dailyCalories;
+        document.getElementById('modal-daily-protein').value = base.dailyProtein;
+        document.getElementById('modal-dumbbell-type').value = base.dumbbellType;
+        document.getElementById('modal-target-sets').value = String(base.targetSetsDefault || 3);
+        showToast(`已還原${base.name}預設值`);
+      });
+
+      // Save form
+      modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const startKg = parseFloat(document.getElementById('modal-start-kg').value);
+        const targetKg = parseFloat(document.getElementById('modal-target-kg').value);
+        const dailyCalories = document.getElementById('modal-daily-calories').value.trim() || (modalActivePhase === 'cut' ? '1,800 – 1,950 kcal' : '2,400 – 2,600 kcal');
+        const dailyProtein = document.getElementById('modal-daily-protein').value.trim() || (modalActivePhase === 'cut' ? '135 – 145 g' : '125 – 135 g');
+        const dumbbellType = document.getElementById('modal-dumbbell-type').value;
+        const targetSets = parseInt(document.getElementById('modal-target-sets').value, 10) || 3;
+
+        if (isNaN(startKg) || isNaN(targetKg) || startKg <= 0 || targetKg <= 0) {
+          alert('請填寫有效的起點與目標體重！');
+          return;
+        }
+
+        if (!appState.phaseGoals) appState.phaseGoals = {};
+        appState.phaseGoals[modalActivePhase] = {
+          startKg,
+          targetKg,
+          dailyCalories,
+          dailyProtein,
+          water: '2,500 – 3,000 ml',
+          dumbbellType,
+          targetSets
+        };
+
+        // Switch to selected phase
+        appState.currentPhase = modalActivePhase;
+        saveState();
+
+        closeGoalModal();
+        updateProfileBanner();
+        renderCalendar();
+        renderDailyView();
+        renderProgressView();
+        showToast(`🎯 已儲存並套用【${modalActivePhase === 'cut' ? '減脂期' : '增肌期'}】自訂目標！`);
+      });
+
+      // Close modal events
+      document.getElementById('btn-close-modal').addEventListener('click', closeGoalModal);
+      document.getElementById('btn-cancel-modal').addEventListener('click', closeGoalModal);
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeGoalModal();
+      });
+
+      // Open modal trigger buttons
+      const btnHeaderGoals = document.getElementById('btn-header-goals');
+      if (btnHeaderGoals) btnHeaderGoals.addEventListener('click', () => openGoalModal());
+      const btnOpenPhaseSettings = document.getElementById('btn-open-phase-settings');
+      if (btnOpenPhaseSettings) btnOpenPhaseSettings.addEventListener('click', () => openGoalModal());
+      const btnEditProgressGoal = document.getElementById('btn-edit-progress-goal');
+      if (btnEditProgressGoal) btnEditProgressGoal.addEventListener('click', () => openGoalModal());
+
       // Set default date input values
       document.getElementById('weight-input-date').value = formatDateKey(new Date());
       document.getElementById('measure-date').value = formatDateKey(new Date());
 
       // Boot application
+      updateProfileBanner();
       renderCalendar();
       renderDailyView();
       renderProgressView();
