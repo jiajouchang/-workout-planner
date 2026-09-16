@@ -762,6 +762,204 @@
       font-weight: 600;
     }
 
+    /* 動作難度階梯選擇器 (Variation Tier Controls) */
+    .variation-tier-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .variation-tier-pills {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .tier-pill {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .tier-pill:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .tier-pill.tier-regression.active {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #10b981;
+      color: #6ee7b7;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+
+    .tier-pill.tier-standard.active {
+      background: rgba(59, 130, 246, 0.22);
+      border-color: #3b82f6;
+      color: #93c5fd;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+
+    .tier-pill.tier-progression.active {
+      background: rgba(168, 85, 247, 0.22);
+      border-color: #a855f7;
+      color: #d8b4fe;
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+    }
+
+    .variation-apply-scope {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .scope-checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .scope-checkbox-label input {
+      accent-color: var(--accent-blue);
+      cursor: pointer;
+    }
+
+    /* 動作難度特點提示橫幅 (Variation Info Banner) */
+    .variation-info-banner {
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    .variation-info-banner.regression {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #a7f3d0;
+    }
+
+    .variation-info-banner.standard {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #bfdbfe;
+    }
+
+    .variation-info-banner.progression {
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      color: #e9d5ff;
+    }
+
+    .badge-diff-level {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .badge-diff-regression {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .badge-diff-standard {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .badge-diff-progression {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    /* 課表動作自訂彈窗專用樣式 */
+    .customizer-split-box {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .customizer-split-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .customizer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .customizer-row:last-child {
+      border-bottom: none;
+    }
+
+    .customizer-row-info {
+      flex: 1 1 240px;
+    }
+
+    .customizer-row-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .customizer-row-desc {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .btn-outline-cyan {
+      background: transparent;
+      border: 1px solid #06b6d4;
+      color: #67e8f9;
+    }
+
+    .btn-outline-cyan:hover {
+      background: rgba(6, 182, 212, 0.15);
+      color: #a5f3fc;
+    }
+
     .exercise-body-grid {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -1159,7 +1357,10 @@
         <div class="phase-switcher-label">
           <span>🔄 目前時期與循環：</span>
         </div>
-        <button class="btn btn-sm btn-primary" id="btn-open-phase-settings">🎯 彈性自訂目標與參數</button>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn btn-sm btn-outline-cyan" id="btn-open-exercise-customizer">⚡ 自訂動作難度 (退階/進階)</button>
+          <button class="btn btn-sm btn-primary" id="btn-open-phase-settings">🎯 彈性自訂目標與參數</button>
+        </div>
       </div>
       <div class="phase-switcher-buttons">
         <button class="phase-btn active" id="phase-btn-cut" data-phase="cut">
@@ -1457,6 +1658,37 @@
     </div>
   </div>
 
+  <!-- Modal 2: 課表動作難度自訂面板 (Exercise Difficulty Customizer Modal) -->
+  <div class="modal-overlay" id="exercise-customizer-modal-overlay">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size: 1.15rem; color: #fff; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+            <span>⚡ 自訂課表動作難度（退階 / 進階）</span>
+          </h3>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+            可針對弱項動作（如保加利亞分腿蹲）切換為退階動作，或針對優勢動作升級挑戰。設定將儲存為您專屬的固定課表！
+          </p>
+        </div>
+        <button type="button" class="btn btn-sm" id="btn-close-customizer-modal" style="padding: 4px 10px;">✕</button>
+      </div>
+
+      <div id="customizer-split-groups-container" style="max-height: 60vh; overflow-y: auto; padding-right: 4px; margin-bottom: 16px;">
+        <!-- Dynamically populated by renderExerciseCustomizerModal() -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 16px; flex-wrap: wrap;">
+        <button type="button" class="btn btn-sm" id="btn-reset-all-exercises" style="color: var(--text-muted);">
+          🔄 全部還原為原課表標準
+        </button>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn btn-sm" id="btn-cancel-customizer-modal">取消</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btn-save-exercise-customizer">💾 儲存並套用課表設定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification element -->
   <div class="toast" id="app-toast">操作完成</div>
 
@@ -1491,6 +1723,7 @@
         },
         logs: {},
         progression: {},
+        customExercises: {},
         bodyweight: [
           { date: '2026-09-01', kg: 68.0 }
         ],
@@ -1515,6 +1748,7 @@
           }
           if (!parsed.logs) parsed.logs = {};
           if (!parsed.progression) parsed.progression = {};
+          if (!parsed.customExercises) parsed.customExercises = {};
           if (!parsed.bodyweight) parsed.bodyweight = [];
           if (!parsed.measurements) parsed.measurements = [];
           return parsed;
@@ -1714,9 +1948,14 @@
 
       function getCompletionStatus(dateKey) {
         const curPhase = appState.currentPhase || 'cut';
+        const activePhaseCfg = getActivePhaseConfig(curPhase);
         const dayLog = appState.logs[dateKey];
         const dateObj = parseDateKey(dateKey);
-        const split = getSplitForDate(dateObj, curPhase);
+        const split = getSplitForDate(dateObj, curPhase, {
+          ...activePhaseCfg,
+          customExercises: appState.customExercises || {},
+          dayOverrides: (dayLog && dayLog.exerciseOverrides) || {}
+        });
 
         if (split.type === 'rest') {
           return 'completed';
@@ -1751,6 +1990,7 @@
 
       function renderCalendar() {
         const curPhase = appState.currentPhase || 'cut';
+        const activePhaseCfg = getActivePhaseConfig(curPhase);
         calMonthYear.textContent = `${calendarViewYear} 年 ${calendarViewMonth + 1} 月`;
         calDaysContainer.innerHTML = '';
 
@@ -1777,7 +2017,12 @@
         for (let day = 1; day <= totalDays; day++) {
           const thisDate = new Date(calendarViewYear, calendarViewMonth, day);
           const dateKey = formatDateKey(thisDate);
-          const split = getSplitForDate(thisDate, curPhase);
+          const dayLog = appState.logs[dateKey];
+          const split = getSplitForDate(thisDate, curPhase, {
+            ...activePhaseCfg,
+            customExercises: appState.customExercises || {},
+            dayOverrides: (dayLog && dayLog.exerciseOverrides) || {}
+          });
           const status = getCompletionStatus(dateKey);
 
           const cell = document.createElement('div');
@@ -1849,20 +2094,15 @@
       });
 
       function checkProgressiveOverloadEligibility(exerciseId, targetMaxReps) {
-        // Find most recent completed workout before selectedDate that included this exercise
         const targetKey = formatDateKey(selectedDate);
         const sortedDates = Object.keys(appState.logs).sort().reverse();
-        
         for (const dKey of sortedDates) {
-          if (dKey >= targetKey) continue; // Only inspect previous sessions
+          if (dKey >= targetKey) continue;
           const exLog = appState.logs[dKey]?.exercises?.[exerciseId];
           if (exLog && exLog.sets && exLog.sets.length > 0) {
-            // Check if all sets achieved the max rep cap
             const allReachedMax = exLog.sets.every(s => s.done && Number(s.reps) >= targetMaxReps);
-            if (allReachedMax) {
-              return true;
-            }
-            break; // only check the most recent session
+            if (allReachedMax) return true;
+            break;
           }
         }
         return false;
@@ -1871,24 +2111,32 @@
       function renderDailyView() {
         const curPhase = appState.currentPhase || 'cut';
         const phaseCfg = getPhaseConfig(curPhase);
+        const activePhaseCfg = getActivePhaseConfig(curPhase);
         const dateKey = formatDateKey(selectedDate);
         const dayNames = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-        const split = getSplitForDate(selectedDate, curPhase);
-
-        dailyDisplayDate.textContent = `${selectedDate.getFullYear()}年${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日 ${dayNames[selectedDate.getDay()]}`;
-        dailySplitPill.textContent = split.title;
-        dailySplitPill.style.background = split.color;
-        dailySplitDesc.textContent = split.description;
 
         // Ensure state structure exists for this day
         if (!appState.logs[dateKey]) {
           appState.logs[dateKey] = {
             exercises: {},
             cardioDone: false,
+            exerciseOverrides: {},
             meals: { breakfast: false, lunch: false, afternoon_snack: false, dinner: false, bedtime: false }
           };
         }
         const dayLog = appState.logs[dateKey];
+        if (!dayLog.exerciseOverrides) dayLog.exerciseOverrides = {};
+
+        const split = getSplitForDate(selectedDate, curPhase, {
+          ...activePhaseCfg,
+          customExercises: appState.customExercises || {},
+          dayOverrides: dayLog.exerciseOverrides || {}
+        });
+
+        dailyDisplayDate.textContent = `${selectedDate.getFullYear()}年${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日 ${dayNames[selectedDate.getDay()]}`;
+        dailySplitPill.textContent = split.title;
+        dailySplitPill.style.background = split.color;
+        dailySplitDesc.textContent = split.description;
 
         // Render Workout Section
         dailyWorkoutContainer.innerHTML = '';
@@ -1933,6 +2181,7 @@
         } else if (split.type === 'strength') {
           // Render Exercise Cards
           split.exercises.forEach(targetEx => {
+            const baseExId = targetEx.baseExerciseId || targetEx.exerciseId;
             const exId = targetEx.exerciseId;
             const exMeta = (typeof EXERCISES_DATA !== 'undefined' && EXERCISES_DATA[exId]) ? EXERCISES_DATA[exId] : {
               name: exId,
@@ -1941,6 +2190,31 @@
               gif: `gifs/${exId}.gif`,
               steps: ['依自身節奏平穩操作。']
             };
+
+            // 變體群組與階層資訊
+            const varGroup = (typeof EXERCISE_VARIATIONS !== 'undefined' && EXERCISE_VARIATIONS[baseExId]) ? EXERCISE_VARIATIONS[baseExId] : null;
+            const curLevel = targetEx.variationLevel || 'standard';
+            const isGloballySet = (appState.customExercises && appState.customExercises[baseExId] === curLevel) || (!appState.customExercises?.[baseExId] && curLevel === 'standard');
+
+            // 難度選擇膠囊與範圍勾選
+            let tierHtml = '';
+            if (varGroup) {
+              tierHtml = `
+                <div class="variation-tier-container">
+                  <div class="variation-tier-pills">
+                    <button type="button" class="tier-pill tier-regression ${curLevel === 'regression' ? 'active' : ''}" data-base="${baseExId}" data-level="regression" title="退階動作：${varGroup.regression?.name || '退階推薦'}">🟢 退階</button>
+                    <button type="button" class="tier-pill tier-standard ${curLevel === 'standard' ? 'active' : ''}" data-base="${baseExId}" data-level="standard" title="標準原課表：${varGroup.standard?.name || '標準動作'}">🔵 標準</button>
+                    <button type="button" class="tier-pill tier-progression ${curLevel === 'progression' ? 'active' : ''}" data-base="${baseExId}" data-level="progression" title="進階挑戰：${varGroup.progression?.name || '進階挑戰'}">🟣 進階</button>
+                  </div>
+                  <div class="variation-apply-scope">
+                    <label class="scope-checkbox-label" title="若勾選，日後所有此課表日期均套用此難度動作">
+                      <input type="checkbox" class="cb-persist-scope" data-base="${baseExId}" ${isGloballySet ? 'checked' : ''}>
+                      <span>設為課表預設</span>
+                    </label>
+                  </div>
+                </div>
+              `;
+            }
 
             // Get or initialize progression stage
             if (!appState.progression[exId]) {
@@ -1958,7 +2232,7 @@
               dayLog.exercises[exId] = { sets: [] };
               for (let i = 0; i < targetEx.targetSets; i++) {
                 dayLog.exercises[exId].sets.push({
-                  weight: targetEx.defaultWeight || (curPhase === 'cut' ? 8 : 20),
+                  weight: targetEx.defaultWeight !== undefined ? targetEx.defaultWeight : (curPhase === 'cut' ? 8 : 20),
                   reps: targetEx.minReps,
                   done: false
                 });
@@ -2027,16 +2301,28 @@
                 <div class="exercise-name-area">
                   <h3>
                     <span>${exMeta.name}</span>
+                    <span class="badge-diff-level badge-diff-${curLevel}">${targetEx.variationLevelLabel || '標準'}</span>
                     <span class="muscle-badge">${exMeta.target_area}</span>
                   </h3>
                   <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">
                     ${exMeta.tip}
                   </div>
                 </div>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                  <span class="exercise-stage-badge">階梯：${curProgression.name}</span>
+                <div style="display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap;">
+                  ${tierHtml}
+                  <span class="exercise-stage-badge" style="margin-top: 4px;">階梯：${curProgression.name}</span>
                 </div>
               </div>
+
+              ${targetEx.tagline ? `
+                <div class="variation-info-banner ${curLevel}">
+                  <span style="font-size: 1.1rem; flex-shrink: 0;">${curLevel === 'regression' ? '🟢' : (curLevel === 'progression' ? '🟣' : '🔵')}</span>
+                  <div>
+                    <strong style="color: #fff;">${targetEx.variationLevelLabel || '動作難度'}特色：</strong>
+                    ${targetEx.tagline}
+                  </div>
+                </div>
+              ` : ''}
 
               ${alertHtml}
 
@@ -2102,6 +2388,59 @@
             `;
 
             dailyWorkoutContainer.appendChild(card);
+          });
+
+          // Bind Difficulty Tier Pill Click Events
+          dailyWorkoutContainer.querySelectorAll('.tier-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const baseEx = btn.getAttribute('data-base');
+              const targetLevel = btn.getAttribute('data-level');
+              const cb = dailyWorkoutContainer.querySelector(`.cb-persist-scope[data-base="${baseEx}"]`);
+              const persistScope = cb ? cb.checked : false;
+
+              if (persistScope) {
+                if (!appState.customExercises) appState.customExercises = {};
+                appState.customExercises[baseEx] = targetLevel;
+                if (dayLog.exerciseOverrides) delete dayLog.exerciseOverrides[baseEx];
+              } else {
+                if (!dayLog.exerciseOverrides) dayLog.exerciseOverrides = {};
+                dayLog.exerciseOverrides[baseEx] = targetLevel;
+              }
+
+              saveState();
+              renderDailyView();
+              renderCalendar();
+
+              const varGroup = (typeof EXERCISE_VARIATIONS !== 'undefined' && EXERCISE_VARIATIONS[baseEx]) ? EXERCISE_VARIATIONS[baseEx] : null;
+              const actObj = varGroup ? (varGroup[targetLevel] || varGroup.standard) : null;
+              const actName = actObj ? actObj.name : targetLevel;
+              showToast(`已切換為【${actName}】${persistScope ? '（已設為日後固定課表預設）' : '（僅套用今日打卡）'}`);
+            });
+          });
+
+          // Bind Scope Checkbox Direct Change Events
+          dailyWorkoutContainer.querySelectorAll('.cb-persist-scope').forEach(cb => {
+            cb.addEventListener('change', () => {
+              const baseEx = cb.getAttribute('data-base');
+              const card = cb.closest('.exercise-card');
+              const activePill = card.querySelector('.tier-pill.active');
+              const curLevel = activePill ? activePill.getAttribute('data-level') : 'standard';
+
+              if (cb.checked) {
+                if (!appState.customExercises) appState.customExercises = {};
+                appState.customExercises[baseEx] = curLevel;
+                if (dayLog.exerciseOverrides) delete dayLog.exerciseOverrides[baseEx];
+                showToast(`已將此動作設定為日後固定課表預設！`);
+              } else {
+                if (appState.customExercises && appState.customExercises[baseEx]) {
+                  delete appState.customExercises[baseEx];
+                }
+                if (!dayLog.exerciseOverrides) dayLog.exerciseOverrides = {};
+                dayLog.exerciseOverrides[baseEx] = curLevel;
+                showToast(`已改為僅在此日打卡套用`);
+              }
+              saveState();
+            });
           });
 
           // Bind Dumbbell Quick Pill Click Events
@@ -2625,6 +2964,7 @@
               return;
             }
             appState = imported;
+            if (!appState.customExercises) appState.customExercises = {};
             saveState();
             updateProfileBanner();
             renderCalendar();
@@ -2766,6 +3106,135 @@
       if (btnOpenPhaseSettings) btnOpenPhaseSettings.addEventListener('click', () => openGoalModal());
       const btnEditProgressGoal = document.getElementById('btn-edit-progress-goal');
       if (btnEditProgressGoal) btnEditProgressGoal.addEventListener('click', () => openGoalModal());
+
+      // 9. Exercise Difficulty Customizer Modal Logic
+      const customizerModalOverlay = document.getElementById('exercise-customizer-modal-overlay');
+      const customizerContainer = document.getElementById('customizer-split-groups-container');
+      let tempCustomExercises = {};
+
+      function openExerciseCustomizerModal() {
+        tempCustomExercises = JSON.parse(JSON.stringify(appState.customExercises || {}));
+        renderCustomizerContent();
+        customizerModalOverlay.classList.add('active');
+      }
+
+      function closeExerciseCustomizerModal() {
+        customizerModalOverlay.classList.remove('active');
+      }
+
+      function renderCustomizerContent() {
+        if (!customizerContainer) return;
+        customizerContainer.innerHTML = '';
+
+        const splitKeys = [
+          { key: 'upper_a', name: '上半身 A', desc: '胸肌推力、背部引體與手臂肩部輔助' },
+          { key: 'lower_a', name: '下半身 A + 核心', desc: '高腳杯深蹲、保加利亞分腿蹲、硬舉與核心' },
+          { key: 'upper_b', name: '上半身 B', desc: '引體向上量累積、上胸厚度與背部後側立體感' },
+          { key: 'lower_b', name: '下半身 B + 核心', desc: '保加利亞分腿蹲、相撲深蹲、單腿硬舉與臀推' }
+        ];
+
+        splitKeys.forEach(splitInfo => {
+          const rawSplit = WORKOUT_SPLITS[splitInfo.key];
+          if (!rawSplit || rawSplit.type !== 'strength') return;
+
+          const box = document.createElement('div');
+          box.className = 'customizer-split-box';
+
+          let rowsHtml = '';
+          rawSplit.exercises.forEach(exObj => {
+            const baseId = exObj.exerciseId;
+            const group = EXERCISE_VARIATIONS[baseId];
+            if (!group) return;
+
+            const currentChosen = tempCustomExercises[baseId] || 'standard';
+            const activeVariant = group[currentChosen] || group.standard;
+
+            rowsHtml += `
+              <div class="customizer-row" data-base-id="${baseId}">
+                <div class="customizer-row-info">
+                  <div class="customizer-row-title">
+                    <span>${group.baseName}</span>
+                    <span class="muscle-badge">${group.targetArea}</span>
+                  </div>
+                  <div class="customizer-row-desc" id="custom-desc-${baseId}">
+                    目前選用：<strong>${activeVariant.name}</strong>（${activeVariant.levelLabel}）— ${activeVariant.tagline}
+                  </div>
+                </div>
+                <div class="variation-tier-pills">
+                  <button type="button" class="tier-pill tier-regression ${currentChosen === 'regression' ? 'active' : ''}" data-custom-base="${baseId}" data-custom-level="regression" title="退階：${group.regression?.name || '無'}">🟢 退階</button>
+                  <button type="button" class="tier-pill tier-standard ${currentChosen === 'standard' ? 'active' : ''}" data-custom-base="${baseId}" data-custom-level="standard" title="標準：${group.standard?.name || '標準'}">🔵 標準</button>
+                  <button type="button" class="tier-pill tier-progression ${currentChosen === 'progression' ? 'active' : ''}" data-custom-base="${baseId}" data-custom-level="progression" title="進階：${group.progression?.name || '無'}">🟣 進階</button>
+                </div>
+              </div>
+            `;
+          });
+
+          box.innerHTML = `
+            <div class="customizer-split-title" style="color: ${rawSplit.color};">
+              <span>🏋️ ${splitInfo.name}</span>
+              <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: normal;">— ${splitInfo.desc}</span>
+            </div>
+            <div class="customizer-rows-wrapper">
+              ${rowsHtml}
+            </div>
+          `;
+
+          customizerContainer.appendChild(box);
+        });
+
+        // 綁定自訂面板內的按鈕切換
+        customizerContainer.querySelectorAll('button[data-custom-base]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const baseId = btn.getAttribute('data-custom-base');
+            const level = btn.getAttribute('data-custom-level');
+            tempCustomExercises[baseId] = level;
+
+            // 更新所有同一動作的按鈕 active 狀態
+            customizerContainer.querySelectorAll(`button[data-custom-base="${baseId}"]`).forEach(b => {
+              b.classList.toggle('active', b.getAttribute('data-custom-level') === level);
+            });
+
+            // 更新該行的說明文字
+            const group = EXERCISE_VARIATIONS[baseId];
+            if (group) {
+              const activeVariant = group[level] || group.standard;
+              customizerContainer.querySelectorAll(`#custom-desc-${baseId}`).forEach(descEl => {
+                descEl.innerHTML = `目前選用：<strong>${activeVariant.name}</strong>（${activeVariant.levelLabel}）— ${activeVariant.tagline}`;
+              });
+            }
+          });
+        });
+      }
+
+      // 保存課表自訂動作難度
+      document.getElementById('btn-save-exercise-customizer').addEventListener('click', () => {
+        appState.customExercises = JSON.parse(JSON.stringify(tempCustomExercises));
+        saveState();
+        closeExerciseCustomizerModal();
+        renderDailyView();
+        renderCalendar();
+        showToast('🎉 自訂課表動作難度已成功儲存並套用！');
+      });
+
+      // 全部還原為原課表標準
+      document.getElementById('btn-reset-all-exercises').addEventListener('click', () => {
+        tempCustomExercises = {};
+        renderCustomizerContent();
+        showToast('已重置為原課表標準動作，請點擊「儲存」確認套用。');
+      });
+
+      // 關閉自訂彈窗
+      document.getElementById('btn-close-customizer-modal').addEventListener('click', closeExerciseCustomizerModal);
+      document.getElementById('btn-cancel-customizer-modal').addEventListener('click', closeExerciseCustomizerModal);
+      customizerModalOverlay.addEventListener('click', (e) => {
+        if (e.target === customizerModalOverlay) closeExerciseCustomizerModal();
+      });
+
+      // 打開自訂彈窗觸發按鈕
+      const btnOpenCustomizer = document.getElementById('btn-open-exercise-customizer');
+      if (btnOpenCustomizer) {
+        btnOpenCustomizer.addEventListener('click', openExerciseCustomizerModal);
+      }
 
       // Set default date input values
       document.getElementById('weight-input-date').value = formatDateKey(new Date());
