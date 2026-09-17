@@ -38,6 +38,11 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     }
 
+    html {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     body {
       background-color: var(--bg-main);
       color: var(--text-main);
@@ -45,6 +50,8 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
     }
 
     /* Header */
@@ -532,7 +539,7 @@
 
     .weekdays-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 8px;
       margin-bottom: 8px;
       text-align: center;
@@ -543,11 +550,13 @@
 
     .days-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 8px;
     }
 
     .day-cell {
+      min-width: 0;
+      overflow: hidden;
       min-height: 105px;
       background: var(--bg-input);
       border: 1px solid var(--border-color);
@@ -650,6 +659,41 @@
     .status-dot.completed {
       background: #10b981;
       box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    }
+
+    .badge-text-short {
+      display: none;
+    }
+
+    .calendar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+    }
+
+    .legend-tip {
+      color: #38bdf8;
+      margin-left: auto;
     }
 
     /* ========================================================== */
@@ -968,19 +1012,289 @@
     }
 
     @media (max-width: 768px) {
-      .exercise-body-grid {
-        grid-template-columns: 1fr;
+      /* 1. Header */
+      header {
+        padding: 10px 12px;
+        gap: 8px;
       }
-      .days-grid {
+      .brand-group {
+        gap: 8px;
+      }
+      .brand-icon {
+        font-size: 22px;
+      }
+      .brand-title {
+        font-size: 1.05rem;
+      }
+      .brand-subtitle {
+        font-size: 0.72rem;
+      }
+      .header-actions {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: flex-start;
+      }
+      .header-actions .btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        flex: 1 1 auto;
+        text-align: center;
+        justify-content: center;
+      }
+
+      /* 2. Tabs */
+      .tabs-bar {
+        padding: 0 4px;
+      }
+      .tab-btn {
+        padding: 10px 4px;
+        font-size: 0.85rem;
+        flex: 1;
+        justify-content: center;
         gap: 4px;
       }
+
+      /* 3. Main Container */
+      main {
+        padding: 12px 8px 32px;
+        max-width: 100vw;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* 4. Phase Switcher */
+      .phase-switcher-container {
+        padding: 10px 12px;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .phase-switcher-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .phase-switcher-header > div:last-child {
+        width: 100%;
+        display: flex;
+        gap: 6px;
+      }
+      .phase-switcher-header .btn {
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        padding: 6px 6px;
+      }
+      .phase-switcher-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .phase-btn {
+        min-width: 0;
+        width: 100%;
+        padding: 8px 12px;
+      }
+
+      /* 5. Profile Banner */
+      .profile-badge-bar {
+        padding: 10px 12px;
+        gap: 8px;
+        font-size: 0.78rem;
+        margin-bottom: 16px;
+      }
+      .profile-info {
+        gap: 8px;
+      }
+
+      /* 6. Calendar */
+      .calendar-card {
+        padding: 10px 6px 14px;
+        border-radius: var(--radius-md);
+      }
+      .calendar-header {
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .month-title {
+        font-size: 1.1rem;
+      }
+      .calendar-nav {
+        gap: 6px;
+      }
+      .calendar-nav .btn {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+      }
+      .weekdays-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 2px;
+        font-size: 0.72rem;
+        margin-bottom: 4px;
+      }
+      .days-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 3px;
+      }
       .day-cell {
-        min-height: 85px;
-        padding: 4px;
+        min-width: 0;
+        min-height: 62px;
+        padding: 3px 2px;
+        border-radius: 6px;
+        overflow: hidden;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .day-top-row {
+        width: 100%;
+        justify-content: center;
+      }
+      .day-num {
+        font-size: 0.8rem;
+      }
+      .day-cell.today .day-num {
+        background: var(--accent-blue);
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+      }
+      .day-today-tag {
+        display: none;
       }
       .day-content-badge {
         font-size: 0.65rem;
-        padding: 2px;
+        padding: 2px 2px;
+        margin-top: 1px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 4px;
+      }
+      .badge-text-full {
+        display: none;
+      }
+      .badge-text-short {
+        display: inline !important;
+        font-weight: 700;
+      }
+      .status-dot-container {
+        justify-content: center;
+        margin-top: 1px;
+        gap: 0;
+      }
+      .status-text {
+        display: none;
+      }
+      .status-dot {
+        width: 6px;
+        height: 6px;
+      }
+      .calendar-legend {
+        gap: 6px 12px;
+        margin-top: 12px;
+        padding-top: 10px;
+        font-size: 0.72rem;
+      }
+      .legend-tip {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 4px;
+      }
+
+      /* 7. Daily Check-in Card */
+      .daily-header-card {
+        padding: 14px 12px;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .daily-title-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+      }
+      .daily-date-nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .daily-date-nav .btn {
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.78rem;
+        padding: 6px 8px;
+      }
+      .exercise-card {
+        padding: 14px 12px;
+        margin-bottom: 16px;
+      }
+      .exercise-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .exercise-body-grid {
+        grid-template-columns: 1fr;
+      }
+      .variation-tier-pills {
+        flex-wrap: wrap;
+      }
+      .set-input {
+        width: 62px;
+        padding: 5px 6px;
+        font-size: 0.85rem;
+      }
+      .set-check-btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+      }
+      .dumbbell-quick-bar {
+        padding: 6px 8px;
+      }
+      .dumbbell-quick-pills {
+        gap: 4px;
+      }
+      .btn-dumbbell-pill {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+      }
+
+      /* 8. Progress View */
+      .stat-box {
+        padding: 14px 12px;
+      }
+      .form-group {
+        gap: 6px;
+      }
+      .form-group .input-text {
+        flex: 1 1 80px;
+      }
+
+      /* 9. Modals */
+      .modal-overlay {
+        padding: 10px;
+      }
+      .modal-card {
+        padding: 16px 14px;
+        max-width: 100%;
+        max-height: 94vh;
+      }
+      .goal-phase-radios {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .customizer-row-info {
+        flex: 1 1 100%;
+      }
+      .customizer-split-box {
+        padding: 10px;
       }
     }
 
@@ -1423,6 +1737,15 @@
 
         <!-- Days Grid -->
         <div class="days-grid" id="calendar-days-container"></div>
+
+        <!-- Calendar Legend -->
+        <div class="calendar-legend">
+          <div class="legend-item"><span class="legend-badge" style="background: #3b82f622; color: #3b82f6; border-color: #3b82f655;">上A / 上B</span> 上半身課表</div>
+          <div class="legend-item"><span class="legend-badge" style="background: #10b98122; color: #10b981; border-color: #10b98155;">下A / 下B</span> 下半身+核心課表</div>
+          <div class="legend-item"><span class="legend-badge" style="background: #06b6d422; color: #06b6d4; border-color: #06b6d455;">有氧 / 快走</span> 心肺 Zone 2 / 恢復</div>
+          <div class="legend-item"><span class="legend-badge" style="background: #64748b22; color: #94a3b8; border-color: #64748b55;">休息</span> 完全修復日</div>
+          <div class="legend-item legend-tip">💡 點擊任一日期方格即可直接查看當日動作並進行打卡</div>
+        </div>
       </div>
     </section>
 
@@ -1988,6 +2311,24 @@
         return 'partial';
       }
 
+      function getSplitShortTitle(splitId, fullTitle) {
+        if (splitId === 'upper_a') return '上A';
+        if (splitId === 'lower_a') return '下A';
+        if (splitId === 'upper_b') return '上B';
+        if (splitId === 'lower_b') return '下B';
+        if (splitId === 'cardio_rest') return '有氧';
+        if (splitId === 'active_recovery') return '快走';
+        if (splitId === 'full_rest') return '休息';
+        if (fullTitle.includes('上半身 A')) return '上A';
+        if (fullTitle.includes('下半身 A')) return '下A';
+        if (fullTitle.includes('上半身 B')) return '上B';
+        if (fullTitle.includes('下半身 B')) return '下B';
+        if (fullTitle.includes('有氧')) return '有氧';
+        if (fullTitle.includes('跑') || fullTitle.includes('走')) return '快走';
+        if (fullTitle.includes('休')) return '休息';
+        return fullTitle.slice(0, 2);
+      }
+
       function renderCalendar() {
         const curPhase = appState.currentPhase || 'cut';
         const activePhaseCfg = getActivePhaseConfig(curPhase);
@@ -2034,17 +2375,20 @@
           if (status === 'completed') statusLabel = '已完成';
           else if (status === 'partial') statusLabel = '部分完成';
 
+          const shortTitle = getSplitShortTitle(split.id, split.title);
+
           cell.innerHTML = `
             <div class="day-top-row">
               <span class="day-num">${day}</span>
               ${dateKey === todayKey ? '<span class="day-today-tag">今日</span>' : ''}
             </div>
             <div class="day-content-badge" style="background: ${split.color}22; color: ${split.color}; border: 1px solid ${split.color}55;">
-              ${split.title}
+              <span class="badge-text-full">${split.title}</span>
+              <span class="badge-text-short">${shortTitle}</span>
             </div>
             <div class="status-dot-container">
               <span class="status-dot ${status}"></span>
-              <span>${statusLabel}</span>
+              <span class="status-text">${statusLabel}</span>
             </div>
           `;
 
