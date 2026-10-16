@@ -7,64 +7,126 @@
   <script src="exercises_data.js"></script>
   <script src="plan.js"></script>
   <style>
+    /* ========================================================== */
+    /* Design tokens — 清爽淺色主題                                 */
+    /* ========================================================== */
     :root {
-      --bg-main: #090d16;
-      --bg-card: #131b2e;
-      --bg-card-hover: #1c2742;
-      --bg-input: #0f1626;
-      --border-color: #23304d;
-      --border-focus: #3b82f6;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      
-      --accent-blue: #3b82f6;
-      --accent-green: #10b981;
-      --accent-cyan: #06b6d4;
-      --accent-purple: #8b5cf6;
-      --accent-pink: #ec4899;
-      --accent-amber: #f59e0b;
-      --accent-red: #ef4444;
-      
-      --radius-sm: 6px;
-      --radius-md: 10px;
+      color-scheme: light;
+
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-2: #f7f9fc;
+      --surface-3: #eef2f7;
+      --border: #e3e8ef;
+      --border-strong: #cfd7e2;
+
+      --text: #0f172a;
+      --text-2: #334155;
+      --text-muted: #5b6b82;
+      --text-dim: #8492a6;
+
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-soft: #eef4ff;
+      --primary-ring: rgba(37, 99, 235, 0.22);
+
+      --success: #059669;
+      --success-soft: #ecfdf5;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --cut: #ea580c;
+      --cut-ink: #c2410c;
+      --cut-soft: #fff4ec;
+      --bulk: #7c3aed;
+      --bulk-ink: #6d28d9;
+      --bulk-soft: #f5f1ff;
+
+      /* 舊變數名稱保留（行內樣式與 JS 仍有引用） */
+      --bg-main: var(--bg);
+      --bg-card: var(--surface);
+      --bg-card-hover: var(--surface-2);
+      --bg-input: var(--surface);
+      --border-color: var(--border);
+      --border-focus: var(--primary);
+      --text-main: var(--text);
+      --accent-blue: var(--primary);
+      --accent-green: var(--success);
+      --accent-cyan: #0e7490;
+      --accent-purple: var(--bulk);
+      --accent-pink: #db2777;
+      --accent-amber: var(--warning);
+      --accent-red: var(--danger);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
       --radius-lg: 16px;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 1px 3px rgba(15, 23, 42, 0.06), 0 6px 16px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.18);
+
+      --header-h: 64px;
+      --bottom-nav-h: 64px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
     }
 
     html {
       overflow-x: hidden;
       width: 100%;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
       width: 100%;
       max-width: 100vw;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    strong { font-weight: 700; }
+
+    :focus-visible {
+      outline: 3px solid var(--primary-ring);
+      outline-offset: 2px;
+    }
+
+    /* ========================================================== */
+    /* Header                                                     */
+    /* ========================================================== */
     header {
-      background: rgba(19, 27, 46, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 12px 20px;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: var(--header-h);
+      padding: 10px 20px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
@@ -74,87 +136,138 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .brand-icon {
-      font-size: 26px;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
       line-height: 1;
     }
 
     .brand-title {
       font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #fff;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      white-space: nowrap;
     }
 
     .brand-subtitle {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      white-space: nowrap;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
+    /* ========================================================== */
+    /* Buttons                                                    */
+    /* ========================================================== */
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      padding: 7px 14px;
-      font-size: 0.85rem;
+      min-height: 40px;
+      padding: 8px 16px;
+      font-size: 0.92rem;
       font-weight: 600;
+      line-height: 1.2;
       border-radius: var(--radius-sm);
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-main);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text-2);
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--text-muted);
+      background: var(--surface-3);
+      border-color: var(--border-strong);
+      color: var(--text);
     }
 
     .btn-primary {
-      background: var(--accent-blue);
-      border-color: var(--accent-blue);
+      background: var(--primary);
+      border-color: var(--primary);
       color: #fff;
     }
 
     .btn-primary:hover {
-      background: #2563eb;
-      border-color: #2563eb;
-    }
-
-    .btn-success {
-      background: var(--accent-green);
-      border-color: var(--accent-green);
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
       color: #fff;
     }
 
-    .btn-sm {
-      padding: 4px 8px;
-      font-size: 0.75rem;
+    .btn-success {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
     }
 
-    /* Tabs Navigation */
+    .btn-success:hover {
+      background: #047857;
+      border-color: #047857;
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface-3);
+      border-color: transparent;
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 6px 12px;
+      font-size: 0.86rem;
+    }
+
+    .btn-outline-cyan {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-2);
+    }
+
+    .btn-outline-cyan:hover {
+      background: var(--surface-3);
+      color: var(--text);
+    }
+
+    /* ========================================================== */
+    /* Tabs                                                       */
+    /* ========================================================== */
     .tabs-bar {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border-color);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: center;
+      gap: 4px;
       padding: 0 16px;
     }
 
     .tab-btn {
-      padding: 12px 24px;
-      font-size: 0.95rem;
+      padding: 14px 22px 12px;
+      font-size: 0.98rem;
       font-weight: 600;
       color: var(--text-muted);
       background: transparent;
@@ -164,25 +277,32 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.2s;
+      transition: color 0.15s, border-color 0.15s;
     }
 
     .tab-btn:hover {
-      color: var(--text-main);
+      color: var(--text);
     }
 
     .tab-btn.active {
-      color: #fff;
-      border-bottom-color: var(--accent-blue);
+      color: var(--primary);
+      border-bottom-color: var(--primary);
     }
 
-    /* Container */
+    .tab-icon {
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    /* ========================================================== */
+    /* Layout                                                     */
+    /* ========================================================== */
     main {
       flex: 1;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 24px 20px 48px;
     }
 
     .tab-content {
@@ -191,126 +311,190 @@
 
     .tab-content.active {
       display: block;
-      animation: fadeIn 0.2s ease;
+      animation: fadeIn 0.18s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* Target User Profile Banner */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ========================================================== */
+    /* Overview card（時期摘要 + 收合式切換）                       */
+    /* ========================================================== */
+    .overview-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
     .profile-badge-bar {
-      background: linear-gradient(90deg, #1e293b, #131b2e);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 12px 18px;
-      margin-bottom: 24px;
+      padding: 16px 20px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.88rem;
+      gap: 12px 24px;
+    }
+
+    .profile-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: var(--primary-soft);
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .tag-cut {
+      background: var(--cut-soft);
+      color: var(--cut-ink);
+      box-shadow: inset 0 0 0 1px rgba(234, 88, 12, 0.25);
+    }
+
+    .tag-bulk {
+      background: var(--bulk-soft);
+      color: var(--bulk-ink);
+      box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.25);
+    }
+
+    .overview-weight {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .overview-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .overview-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
     }
 
     .profile-info {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .profile-tag {
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      font-size: 0.82rem;
-    }
-
-    .tag-cut {
-      background: rgba(249, 115, 22, 0.2) !important;
-      color: #fdba74 !important;
-      border: 1px solid #ea580c;
-    }
-
-    .tag-bulk {
-      background: rgba(139, 92, 246, 0.2) !important;
-      color: #d8b4fe !important;
-      border: 1px solid #8b5cf6;
-    }
-
-    /* Phase Switcher Styles */
-    .phase-switcher-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 12px 16px;
-      margin-bottom: 18px;
-      display: flex;
       flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      gap: 2px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      min-width: 0;
+      flex: 1 1 320px;
+    }
+
+    #banner-nutrition-targets {
+      color: var(--text-2);
+      font-weight: 600;
+    }
+
+    /* 收合區 */
+    .phase-switcher-container {
+      border-top: 1px solid var(--border);
+      background: var(--surface-2);
     }
 
     .phase-switcher-header {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      flex-wrap: wrap;
+      user-select: none;
+    }
+
+    .phase-switcher-header::-webkit-details-marker { display: none; }
+
+    .phase-switcher-header:hover .phase-switcher-label {
+      color: var(--text);
     }
 
     .phase-switcher-label {
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.9rem;
+      font-weight: 600;
       color: var(--text-muted);
-      white-space: nowrap;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .phase-switcher-buttons {
+    .summary-chevron {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--text-muted);
+      border-bottom: 2px solid var(--text-muted);
+      transform: rotate(45deg) translate(-2px, -2px);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .phase-switcher-container[open] .summary-chevron {
+      transform: rotate(-135deg) translate(-2px, -2px);
+    }
+
+    .phase-switcher-body {
+      padding: 0 20px 18px;
       display: flex;
-      flex: 1;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .phase-switcher-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     .phase-btn {
-      flex: 1;
-      min-width: 260px;
-      background: #0d1424;
-      border: 2px solid var(--border-color);
+      background: var(--surface);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 10px 14px;
+      padding: 12px 14px;
       text-align: left;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       gap: 4px;
-      transition: all 0.2s ease;
-      position: relative;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      min-width: 0;
     }
 
     .phase-btn:hover {
-      border-color: #475569;
-      background: var(--bg-card-hover);
+      border-color: var(--border-strong);
     }
 
     .phase-btn.active[data-phase="cut"] {
-      border-color: #f97316;
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(15, 22, 38, 0.95));
-      box-shadow: 0 0 16px rgba(249, 115, 22, 0.25);
+      border-color: var(--cut);
+      background: var(--cut-soft);
+      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.10);
     }
 
     .phase-btn.active[data-phase="bulk"] {
-      border-color: #8b5cf6;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(15, 22, 38, 0.95));
-      box-shadow: 0 0 16px rgba(139, 92, 246, 0.25);
+      border-color: var(--bulk);
+      background: var(--bulk-soft);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.10);
     }
 
     .phase-btn-top {
@@ -323,47 +507,563 @@
     .phase-btn-title {
       font-size: 1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
     }
 
     .phase-btn-desc {
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .phase-btn-badge {
-      font-size: 0.7rem;
-      padding: 2px 7px;
-      border-radius: 4px;
-      background: #ea580c;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--cut);
       color: #fff;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .phase-btn:not(.active) .phase-btn-badge#phase-badge-cut {
+      display: none;
     }
 
     .phase-btn.active[data-phase="bulk"] .phase-btn-badge {
-      background: #7c3aed;
+      background: var(--bulk);
     }
 
     .badge-unlocked {
-      background: #059669 !important;
+      background: var(--success) !important;
       color: #fff !important;
-      animation: pulse 2s infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
+    .phase-switcher-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    /* 10-Step Adjustable Dumbbell Quick Bar */
+    /* ========================================================== */
+    /* Cards shared                                               */
+    /* ========================================================== */
+    .calendar-card,
+    .daily-header-card,
+    .exercise-card,
+    .cardio-card,
+    .meals-container,
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ========================================================== */
+    /* 1. Calendar                                                */
+    /* ========================================================== */
+    .calendar-card {
+      padding: 20px;
+    }
+
+    .calendar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .month-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .weekdays-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .day-cell {
+      min-width: 0;
+      overflow: hidden;
+      min-height: 104px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 8px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      position: relative;
+    }
+
+    .day-cell:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-ring);
+    }
+
+    .day-cell.other-month {
+      background: transparent;
+      border-style: dashed;
+      cursor: default;
+    }
+
+    .day-cell.other-month .day-num {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .day-cell.other-month:hover {
+      border-color: var(--border);
+      box-shadow: none;
+    }
+
+    .day-cell.today {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .day-cell.selected {
+      box-shadow: 0 0 0 3px var(--primary-ring);
+    }
+
+    .day-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .day-num {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .day-cell.today .day-num {
+      background: var(--primary);
+      color: #fff;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .day-today-tag {
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* 課表標籤：顏色由 --split 決定（plan.js 中各課表的 color） */
+    .day-content-badge,
+    .legend-badge {
+      --split: #64748b;
+      background: color-mix(in srgb, var(--split) 12%, #fff) !important;
+      color: color-mix(in srgb, var(--split) 72%, #000) !important;
+      border: 1px solid color-mix(in srgb, var(--split) 28%, #fff) !important;
+    }
+
+    .day-content-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 6px;
+      border-radius: 6px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .status-dot-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .status-dot.not-started {
+      background: var(--border-strong);
+    }
+
+    .status-dot.partial {
+      background: #f59e0b;
+    }
+
+    .status-dot.completed {
+      background: var(--success);
+    }
+
+    .badge-text-short {
+      display: none;
+    }
+
+    .calendar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-badge {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .legend-tip {
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* ========================================================== */
+    /* 2. Daily check-in                                          */
+    /* ========================================================== */
+    .daily-header-card {
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .daily-title-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    #daily-display-date {
+      font-size: 1.4rem !important;
+      font-weight: 800;
+      color: var(--text) !important;
+      letter-spacing: -0.01em;
+    }
+
+    .split-indicator-pill {
+      --split: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--split) 12%, #fff) !important;
+      color: color-mix(in srgb, var(--split) 72%, #000);
+      border: 1px solid color-mix(in srgb, var(--split) 28%, #fff);
+      white-space: nowrap;
+    }
+
+    .daily-date-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Progressive overload alert */
+    .progression-alert {
+      background: var(--warning-soft);
+      border: 1px solid #fcd34d;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .progression-alert-text {
+      font-size: 0.9rem;
+      color: #78350f;
+      line-height: 1.55;
+    }
+
+    /* Exercise card */
+    .exercise-card {
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .exercise-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .exercise-name-area h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .muscle-badge {
+      background: var(--surface-3);
+      color: var(--text-2);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .exercise-stage-badge {
+      background: var(--surface-3);
+      color: var(--text-muted);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* Variation tier controls */
+    .variation-tier-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .variation-tier-pills {
+      display: inline-flex;
+      background: var(--surface-3);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .tier-pill {
+      background: transparent;
+      border: none;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .tier-pill:hover {
+      color: var(--text);
+    }
+
+    .tier-pill.active {
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      color: var(--text);
+    }
+
+    .tier-pill.tier-regression.active { color: #047857; }
+    .tier-pill.tier-standard.active { color: var(--primary); }
+    .tier-pill.tier-progression.active { color: var(--bulk-ink); }
+
+    .variation-apply-scope {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .scope-checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .scope-checkbox-label input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Variation info banner */
+    .variation-info-banner {
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.5;
+      color: var(--text-2);
+    }
+
+    .variation-info-banner.regression {
+      background: var(--success-soft);
+      border: 1px solid #a7f3d0;
+    }
+
+    .variation-info-banner.standard {
+      background: var(--primary-soft);
+      border: 1px solid #c7d7fe;
+    }
+
+    .variation-info-banner.progression {
+      background: var(--bulk-soft);
+      border: 1px solid #ddd0fe;
+    }
+
+    .badge-diff-level {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .badge-diff-regression {
+      background: var(--success-soft);
+      color: #047857;
+    }
+
+    .badge-diff-standard {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .badge-diff-progression {
+      background: var(--bulk-soft);
+      color: var(--bulk-ink);
+    }
+
+    .exercise-body-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .gif-container {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gif-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .exercise-details {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .exercise-target-line {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 8px;
+    }
+
+    .steps-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-2);
+    }
+
+    .steps-box ol {
+      padding-left: 20px;
+    }
+
+    .steps-box li {
+      margin-bottom: 4px;
+    }
+
+    .steps-box li::marker {
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* Dumbbell quick bar */
     .dumbbell-quick-bar {
-      margin: 10px 0 6px;
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px dashed #3b82f6;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      background: var(--primary-soft);
+      border: 1px solid #c7d7fe;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -371,58 +1071,405 @@
     }
 
     .cut-badge-bar {
-      border: 1px dashed #ea580c;
-      background: rgba(234, 88, 12, 0.08);
+      background: var(--cut-soft);
+      border-color: #fed7aa;
     }
 
     .dumbbell-quick-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #93c5fd;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
     }
 
     .dumbbell-quick-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 6px;
     }
 
     .btn-dumbbell-pill {
-      background: #1e293b;
-      border: 1px solid #3b82f6;
-      color: #e2e8f0;
-      font-size: 0.76rem;
+      background: var(--surface);
+      border: 1px solid #c7d7fe;
+      color: var(--text-2);
+      font-size: 0.82rem;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
+      min-width: 40px;
+      padding: 5px 8px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
 
     .btn-dumbbell-pill:hover {
-      background: #2563eb;
+      background: var(--primary);
+      border-color: var(--primary);
       color: #fff;
-      transform: translateY(-1px);
     }
 
-    /* Milestone congrats banner */
+    /* Sets table */
+    .sets-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .sets-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    .sets-table th {
+      text-align: left;
+      padding: 8px;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sets-table td {
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+    }
+
+    .sets-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .set-input {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      width: 80px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .set-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-ring);
+    }
+
+    .set-check-btn {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+      min-height: 38px;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .set-check-btn:hover {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .set-check-btn.done {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .sets-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sets-actions .btn-primary {
+      margin-left: auto;
+    }
+
+    /* Cardio / rest card */
+    .cardio-card {
+      padding: 32px 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      border-top-width: 4px !important;
+    }
+
+    .cardio-card h3 {
+      color: var(--text) !important;
+    }
+
+    .cardio-done-btn {
+      min-height: 52px;
+      padding: 12px 32px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      margin-top: 8px;
+      cursor: pointer;
+      border: 1.5px solid var(--success);
+      background: var(--surface);
+      color: var(--success);
+      transition: all 0.15s;
+    }
+
+    .cardio-done-btn:hover {
+      background: var(--success-soft);
+    }
+
+    .cardio-done-btn.active {
+      background: var(--success);
+      color: #fff;
+    }
+
+    /* Meals */
+    .meals-container {
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .meals-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .meal-row:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-2);
+    }
+
+    .meal-row.checked {
+      border-color: #a7f3d0;
+      background: var(--success-soft);
+    }
+
+    .meal-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .meal-checkbox {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      accent-color: var(--success);
+      cursor: pointer;
+    }
+
+    /* ========================================================== */
+    /* 3. Progress                                                */
+    /* ========================================================== */
+    .progress-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .stat-box {
+      padding: 20px;
+    }
+
+    .stat-box h4 {
+      color: var(--text) !important;
+    }
+
+    .stage-bar-container {
+      background: var(--surface-3);
+      border-radius: 999px;
+      height: 14px;
+      overflow: hidden;
+      position: relative;
+      margin: 18px 0 8px;
+    }
+
+    .stage-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.6s ease;
+    }
+
+    .stage-markers {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
     .congrats-card {
       margin-top: 14px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1.5px solid #10b981;
+      background: var(--success-soft);
+      border: 1px solid #a7f3d0;
       border-radius: var(--radius-md);
       padding: 14px 18px;
-      color: #d1fae5;
-      font-size: 0.9rem;
+      color: #065f46;
+      font-size: 0.92rem;
       line-height: 1.6;
     }
 
-    /* Goal Settings Modal Styles */
+    .advice-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--warning);
+      background: var(--surface-2);
+      color: var(--text-2);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      margin: 14px 0;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .chart-box {
+      width: 100%;
+      height: 220px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .simple-table th, .simple-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .simple-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    #strength-records-list > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
+    }
+
+    /* ========================================================== */
+    /* Forms                                                      */
+    /* ========================================================== */
+    .form-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .form-group-block {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-2);
+      margin-bottom: 6px;
+    }
+
+    .input-text {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      min-height: 40px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+    }
+
+    .input-text:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-ring);
+    }
+
+    .goal-phase-radios {
+      display: flex;
+      gap: 10px;
+    }
+
+    .goal-phase-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .goal-phase-option:hover {
+      border-color: var(--border-strong);
+    }
+
+    .goal-phase-option:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--text);
+    }
+
+    .goal-phase-option input {
+      accent-color: var(--primary);
+    }
+
+    /* ========================================================== */
+    /* Modals                                                     */
+    /* ========================================================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 7, 13, 0.78);
-      backdrop-filter: blur(6px);
+      background: rgba(15, 23, 42, 0.45);
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -439,525 +1486,53 @@
     }
 
     .modal-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: var(--surface);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: var(--shadow-lg);
       padding: 24px;
-      transform: scale(0.96);
+      transform: translateY(8px);
       transition: transform 0.2s ease;
     }
 
+    .modal-card h3 {
+      color: var(--text) !important;
+    }
+
     .modal-overlay.active .modal-card {
-      transform: scale(1);
+      transform: translateY(0);
     }
 
     .modal-header {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 12px;
-    }
-
-    .form-group-block {
-      margin-bottom: 14px;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .goal-phase-radios {
-      display: flex;
-      gap: 12px;
-    }
-
-    .goal-phase-option {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .goal-phase-option:hover {
-      border-color: #475569;
-    }
-
-    .goal-phase-option:has(input:checked) {
-      border-color: var(--accent-blue);
-      background: rgba(59, 130, 246, 0.15);
-      color: #fff;
-    }
-
-    /* ========================================================== */
-    /* 1. CALENDAR VIEW STYLES                                    */
-    /* ========================================================== */
-    .calendar-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    }
-
-    .calendar-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .calendar-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .month-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .weekdays-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 8px;
-      text-align: center;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-dim);
-    }
-
-    .days-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .day-cell {
-      min-width: 0;
-      overflow: hidden;
-      min-height: 105px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 8px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.15s ease;
-      position: relative;
-    }
-
-    .day-cell:hover {
-      border-color: var(--accent-blue);
-      background: var(--bg-card-hover);
-      transform: translateY(-2px);
-    }
-
-    .day-cell.other-month {
-      opacity: 0.35;
-      cursor: default;
-    }
-
-    .day-cell.other-month:hover {
-      transform: none;
-      border-color: var(--border-color);
-      background: var(--bg-input);
-    }
-
-    .day-cell.today {
-      border: 2px solid var(--accent-blue);
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
-    }
-
-    .day-cell.selected {
-      background: #1e293b;
-      outline: 2px solid #60a5fa;
-    }
-
-    .day-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .day-num {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #e2e8f0;
-    }
-
-    .day-today-tag {
-      font-size: 0.65rem;
-      background: var(--accent-blue);
-      color: #fff;
-      padding: 1px 4px;
-      border-radius: 3px;
-      font-weight: 700;
-    }
-
-    .day-content-badge {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 6px;
-      border-radius: var(--radius-sm);
-      margin-top: 6px;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .status-dot-container {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .status-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    .status-dot.not-started {
-      background: #475569;
-    }
-
-    .status-dot.partial {
-      background: #eab308;
-      box-shadow: 0 0 6px rgba(234, 179, 8, 0.5);
-    }
-
-    .status-dot.completed {
-      background: #10b981;
-      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
-    }
-
-    .badge-text-short {
-      display: none;
-    }
-
-    .calendar-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 16px;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      align-items: center;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .legend-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: var(--radius-sm);
-      border: 1px solid transparent;
-    }
-
-    .legend-tip {
-      color: #38bdf8;
-      margin-left: auto;
-    }
-
-    /* ========================================================== */
-    /* 2. DAILY CHECK-IN STYLES                                   */
-    /* ========================================================== */
-    .daily-header-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin-bottom: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .daily-title-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .split-indicator-pill {
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 20px;
-      color: #fff;
-    }
-
-    .daily-date-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Progressive Overload Alert */
-    .progression-alert {
-      background: linear-gradient(90deg, rgba(234, 88, 12, 0.2), rgba(245, 158, 11, 0.15));
-      border: 1px solid #ea580c;
-      border-radius: var(--radius-md);
-      padding: 12px 16px;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .progression-alert-text {
-      font-size: 0.88rem;
-      color: #fed7aa;
-      line-height: 1.5;
-    }
-
-    /* Exercise Card */
-    .exercise-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-
-    .exercise-card-header {
-      display: flex;
-      flex-wrap: wrap;
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
     }
 
-    .exercise-name-area h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .muscle-badge {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      padding: 2px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .exercise-stage-badge {
-      background: rgba(139, 92, 246, 0.15);
-      color: #c4b5fd;
-      padding: 2px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    /* 動作難度階梯選擇器 (Variation Tier Controls) */
-    .variation-tier-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-    }
-
-    .variation-tier-pills {
-      display: inline-flex;
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 3px;
-      gap: 3px;
-    }
-
-    .tier-pill {
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 16px;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
-
-    .tier-pill:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .tier-pill.tier-regression.active {
-      background: rgba(16, 185, 129, 0.22);
-      border-color: #10b981;
-      color: #6ee7b7;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-    }
-
-    .tier-pill.tier-standard.active {
-      background: rgba(59, 130, 246, 0.22);
-      border-color: #3b82f6;
-      color: #93c5fd;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-    }
-
-    .tier-pill.tier-progression.active {
-      background: rgba(168, 85, 247, 0.22);
-      border-color: #a855f7;
-      color: #d8b4fe;
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
-    }
-
-    .variation-apply-scope {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .scope-checkbox-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .scope-checkbox-label input {
-      accent-color: var(--accent-blue);
-      cursor: pointer;
-    }
-
-    /* 動作難度特點提示橫幅 (Variation Info Banner) */
-    .variation-info-banner {
-      border-radius: var(--radius-md);
-      padding: 8px 12px;
-      margin-bottom: 12px;
-      font-size: 0.82rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      line-height: 1.45;
-    }
-
-    .variation-info-banner.regression {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #a7f3d0;
-    }
-
-    .variation-info-banner.standard {
-      background: rgba(59, 130, 246, 0.08);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      color: #bfdbfe;
-    }
-
-    .variation-info-banner.progression {
-      background: rgba(168, 85, 247, 0.12);
-      border: 1px solid rgba(168, 85, 247, 0.35);
-      color: #e9d5ff;
-    }
-
-    .badge-diff-level {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 12px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .badge-diff-regression {
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-    }
-
-    .badge-diff-standard {
-      background: rgba(59, 130, 246, 0.2);
-      color: #60a5fa;
-      border: 1px solid rgba(59, 130, 246, 0.4);
-    }
-
-    .badge-diff-progression {
-      background: rgba(168, 85, 247, 0.2);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.4);
-    }
-
-    /* 課表動作自訂彈窗專用樣式 */
     .customizer-split-box {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--border-color);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .customizer-split-title {
-      font-size: 0.95rem;
+      --split: var(--text);
+      font-size: 1rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+      color: color-mix(in srgb, var(--split) 72%, #000) !important;
     }
 
     .customizer-row {
@@ -967,7 +1542,7 @@
       align-items: center;
       gap: 10px;
       padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border);
     }
 
     .customizer-row:last-child {
@@ -979,202 +1554,199 @@
     }
 
     .customizer-row-title {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
     .customizer-row-desc {
-      font-size: 0.76rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
-    .btn-outline-cyan {
-      background: transparent;
-      border: 1px solid #06b6d4;
-      color: #67e8f9;
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: calc(100vw - 32px);
+      background: var(--text);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-lg);
+      z-index: 1100;
+      display: none;
+      animation: slideUp 0.22s ease;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: center;
     }
 
-    .btn-outline-cyan:hover {
-      background: rgba(6, 182, 212, 0.15);
-      color: #a5f3fc;
+    @keyframes slideUp {
+      from { transform: translate(-50%, 12px); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
     }
 
-    .exercise-body-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 20px;
-      align-items: start;
+    /* ========================================================== */
+    /* Responsive                                                 */
+    /* ========================================================== */
+    @media (max-width: 900px) {
+      .progress-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
-      /* 1. Header */
-      header {
-        padding: 10px 12px;
-        gap: 8px;
-      }
-      .brand-group {
-        gap: 8px;
-      }
-      .brand-icon {
-        font-size: 22px;
-      }
-      .brand-title {
-        font-size: 1.05rem;
-      }
-      .brand-subtitle {
-        font-size: 0.72rem;
-      }
-      .header-actions {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        justify-content: flex-start;
-      }
-      .header-actions .btn {
-        padding: 5px 8px;
-        font-size: 0.75rem;
-        flex: 1 1 auto;
-        text-align: center;
-        justify-content: center;
-      }
-
-      /* 2. Tabs */
-      .tabs-bar {
-        padding: 0 4px;
-      }
-      .tab-btn {
-        padding: 10px 4px;
-        font-size: 0.85rem;
-        flex: 1;
-        justify-content: center;
-        gap: 4px;
-      }
-
-      /* 3. Main Container */
-      main {
-        padding: 12px 8px 32px;
-        max-width: 100vw;
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      /* 4. Phase Switcher */
-      .phase-switcher-container {
-        padding: 10px 12px;
-        gap: 8px;
-        margin-bottom: 14px;
-      }
-      .phase-switcher-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-      .phase-switcher-header > div:last-child {
-        width: 100%;
-        display: flex;
-        gap: 6px;
-      }
-      .phase-switcher-header .btn {
-        flex: 1;
-        text-align: center;
-        justify-content: center;
-        font-size: 0.72rem;
-        padding: 6px 6px;
-      }
-      .phase-switcher-buttons {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .phase-btn {
-        min-width: 0;
-        width: 100%;
+      /* Header：只留圖示按鈕 */
+      .header-inner {
+        min-height: 56px;
         padding: 8px 12px;
       }
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+        border-radius: 10px;
+      }
+      .brand-title {
+        font-size: 1.02rem;
+      }
+      .brand-subtitle {
+        display: none;
+      }
+      .header-actions {
+        gap: 2px;
+      }
+      .header-actions .btn-label {
+        display: none;
+      }
+      .header-actions .btn {
+        min-width: 40px;
+        padding: 6px 8px;
+      }
+      .header-actions .btn-primary {
+        padding: 6px 12px;
+      }
 
-      /* 5. Profile Banner */
+      /* Tabs → 底部導覽列 */
+      .tabs-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        padding: 4px 0 calc(4px + env(safe-area-inset-bottom));
+        border-bottom: none;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.05);
+        gap: 0;
+      }
+      .tab-btn {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        padding: 6px 4px;
+        font-size: 0.76rem;
+        border-bottom: none;
+        border-radius: var(--radius-sm);
+      }
+      .tab-btn.active {
+        background: transparent;
+      }
+      .tab-icon {
+        font-size: 1.3rem;
+      }
+
+      main {
+        padding: 12px 10px calc(var(--bottom-nav-h) + 28px + env(safe-area-inset-bottom));
+      }
+
+      .toast {
+        bottom: calc(var(--bottom-nav-h) + 16px + env(safe-area-inset-bottom));
+      }
+
+      /* Overview */
+      .overview-card {
+        margin-bottom: 12px;
+      }
       .profile-badge-bar {
-        padding: 10px 12px;
-        gap: 8px;
-        font-size: 0.78rem;
-        margin-bottom: 16px;
+        padding: 14px;
+        gap: 8px 14px;
       }
       .profile-info {
-        gap: 8px;
+        flex-basis: 100%;
+        font-size: 0.84rem;
+      }
+      .phase-switcher-header {
+        padding: 12px 14px;
+      }
+      .phase-switcher-body {
+        padding: 0 14px 14px;
+      }
+      .phase-switcher-buttons {
+        grid-template-columns: 1fr;
+      }
+      .phase-switcher-actions .btn {
+        flex: 1 1 100%;
       }
 
-      /* 6. Calendar */
+      /* Calendar */
       .calendar-card {
-        padding: 10px 6px 14px;
-        border-radius: var(--radius-md);
+        padding: 12px 8px 14px;
       }
       .calendar-header {
+        padding: 0 4px;
         margin-bottom: 10px;
-        flex-wrap: wrap;
-        gap: 8px;
       }
       .month-title {
-        font-size: 1.1rem;
-      }
-      .calendar-nav {
-        gap: 6px;
+        font-size: 1.15rem;
       }
       .calendar-nav .btn {
-        padding: 4px 8px;
-        font-size: 0.75rem;
+        min-height: 34px;
+        padding: 4px 10px;
+        font-size: 0.8rem;
       }
       .weekdays-grid {
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 2px;
-        font-size: 0.72rem;
+        gap: 3px;
+        font-size: 0.74rem;
         margin-bottom: 4px;
       }
       .days-grid {
-        grid-template-columns: repeat(7, minmax(0, 1fr));
         gap: 3px;
       }
       .day-cell {
-        min-width: 0;
-        min-height: 62px;
-        padding: 3px 2px;
-        border-radius: 6px;
-        overflow: hidden;
-        justify-content: space-between;
+        min-height: 64px;
+        padding: 4px 2px;
+        border-radius: 8px;
         align-items: center;
+        gap: 3px;
       }
       .day-top-row {
-        width: 100%;
         justify-content: center;
       }
       .day-num {
-        font-size: 0.8rem;
+        font-size: 0.86rem;
       }
       .day-cell.today .day-num {
-        background: var(--accent-blue);
-        color: #fff;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.72rem;
+        min-width: 22px;
+        height: 22px;
+        padding: 0 4px;
+        font-size: 0.78rem;
       }
       .day-today-tag {
         display: none;
       }
       .day-content-badge {
-        font-size: 0.65rem;
-        padding: 2px 2px;
-        margin-top: 1px;
         width: 100%;
-        box-sizing: border-box;
-        text-align: center;
+        font-size: 0.7rem;
+        padding: 2px 1px;
         border-radius: 4px;
       }
       .badge-text-full {
@@ -1186,8 +1758,6 @@
       }
       .status-dot-container {
         justify-content: center;
-        margin-top: 1px;
-        gap: 0;
       }
       .status-text {
         display: none;
@@ -1197,22 +1767,23 @@
         height: 6px;
       }
       .calendar-legend {
-        gap: 6px 12px;
-        margin-top: 12px;
-        padding-top: 10px;
-        font-size: 0.72rem;
+        gap: 8px 12px;
+        padding: 12px 4px 0;
+        font-size: 0.78rem;
       }
       .legend-tip {
         width: 100%;
         margin-left: 0;
-        margin-top: 4px;
       }
 
-      /* 7. Daily Check-in Card */
+      /* Daily */
       .daily-header-card {
-        padding: 14px 12px;
+        padding: 14px;
         gap: 12px;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
+      }
+      #daily-display-date {
+        font-size: 1.15rem !important;
       }
       .daily-title-group {
         flex-direction: column;
@@ -1222,69 +1793,73 @@
       }
       .daily-date-nav {
         width: 100%;
-        justify-content: space-between;
       }
       .daily-date-nav .btn {
         flex: 1;
-        text-align: center;
-        justify-content: center;
-        font-size: 0.78rem;
-        padding: 6px 8px;
       }
       .exercise-card {
-        padding: 14px 12px;
-        margin-bottom: 16px;
+        padding: 14px;
+        margin-bottom: 12px;
       }
       .exercise-card-header {
         flex-direction: column;
+        gap: 10px;
+      }
+      .variation-tier-container {
         align-items: flex-start;
-        gap: 8px;
       }
       .exercise-body-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
       }
-      .variation-tier-pills {
-        flex-wrap: wrap;
+      .gif-container {
+        max-width: 240px;
+        width: 100%;
+        margin: 0 auto;
       }
       .set-input {
-        width: 62px;
-        padding: 5px 6px;
-        font-size: 0.85rem;
+        width: 64px;
+        padding: 6px;
+      }
+      .sets-table th, .sets-table td {
+        padding: 6px 4px;
       }
       .set-check-btn {
-        padding: 5px 8px;
-        font-size: 0.75rem;
+        padding: 6px 10px;
+        font-size: 0.8rem;
       }
-      .dumbbell-quick-bar {
-        padding: 6px 8px;
+      .sets-actions .btn-primary {
+        margin-left: 0;
+        flex: 1 1 100%;
       }
-      .dumbbell-quick-pills {
-        gap: 4px;
-      }
-      .btn-dumbbell-pill {
-        padding: 3px 6px;
-        font-size: 0.75rem;
+      .meals-container {
+        padding: 14px;
+        margin-top: 12px;
       }
 
-      /* 8. Progress View */
-      .stat-box {
-        padding: 14px 12px;
+      /* Progress */
+      .progress-grid {
+        gap: 12px;
       }
-      .form-group {
-        gap: 6px;
+      .stat-box {
+        padding: 14px;
       }
       .form-group .input-text {
-        flex: 1 1 80px;
+        flex: 1 1 90px;
+        width: auto !important;
       }
 
-      /* 9. Modals */
+      /* Modals：從底部滑出 */
       .modal-overlay {
-        padding: 10px;
+        padding: 0;
+        align-items: flex-end;
       }
       .modal-card {
-        padding: 16px 14px;
-        max-width: 100%;
-        max-height: 94vh;
+        max-width: 100% !important;
+        max-height: 92vh;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+        transform: translateY(24px);
       }
       .goal-phase-radios {
         flex-direction: column;
@@ -1298,341 +1873,17 @@
       }
     }
 
-    .gif-container {
-      background: #000;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gif-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .exercise-details {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .steps-box {
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #cbd5e1;
-    }
-
-    .steps-box ol {
-      padding-left: 20px;
-    }
-
-    .steps-box li {
-      margin-bottom: 4px;
-    }
-
-    .exercise-target-line {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #38bdf8;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Sets Table */
-    .sets-table-wrapper {
-      overflow-x: auto;
-    }
-
-    .sets-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-    }
-
-    .sets-table th {
-      text-align: left;
-      padding: 6px 8px;
-      color: var(--text-dim);
-      font-weight: 600;
-      font-size: 0.78rem;
-    }
-
-    .sets-table td {
-      padding: 6px 8px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .set-input {
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      color: #fff;
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      width: 75px;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-
-    .set-input:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-    }
-
-    .set-check-btn {
-      background: #1e293b;
-      border: 1px solid var(--border-color);
-      color: #94a3b8;
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.15s;
-    }
-
-    .set-check-btn.done {
-      background: #065f46;
-      border-color: #10b981;
-      color: #a7f3d0;
-    }
-
-    .sets-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    /* Cardio Card */
-    .cardio-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .cardio-done-btn {
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: var(--radius-md);
-      margin-top: 16px;
-      cursor: pointer;
-      border: 2px solid var(--accent-cyan);
-      background: rgba(6, 182, 212, 0.15);
-      color: #67e8f9;
-      transition: all 0.2s;
-    }
-
-    .cardio-done-btn.active {
-      background: var(--accent-cyan);
-      color: #000;
-      box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
-    }
-
-    /* Nutrition Cards */
-    .meals-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin-top: 24px;
-    }
-
-    .meals-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .meal-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 14px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .meal-row:hover {
-      background: var(--bg-card-hover);
-      border-color: #3b82f6;
-    }
-
-    .meal-row.checked {
-      border-color: var(--accent-green);
-      background: rgba(16, 185, 129, 0.08);
-    }
-
-    .meal-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .meal-checkbox {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--accent-green);
-      cursor: pointer;
-    }
-
-    /* ========================================================== */
-    /* 3. PROGRESS & STATS STYLES                                 */
-    /* ========================================================== */
-    .progress-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .progress-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 380px) {
+      .brand-title {
+        font-size: 0.95rem;
       }
     }
 
-    .stat-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    }
-
-    .stage-bar-container {
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      height: 24px;
-      overflow: hidden;
-      position: relative;
-      margin: 16px 0 8px;
-    }
-
-    .stage-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #3b82f6, #10b981);
-      width: 0%;
-      transition: width 0.6s ease;
-    }
-
-    .stage-markers {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .advice-card {
-      border-left: 4px solid var(--accent-amber);
-      background: rgba(245, 158, 11, 0.1);
-      padding: 14px 18px;
-      border-radius: var(--radius-sm);
-      margin: 14px 0;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* SVG Chart */
-    .chart-box {
-      width: 100%;
-      height: 220px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 10px;
-      margin-top: 14px;
-    }
-
-    /* Simple Table */
-    .simple-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      margin-top: 12px;
-    }
-
-    .simple-table th, .simple-table td {
-      padding: 8px 10px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .simple-table th {
-      color: var(--text-dim);
-      font-weight: 600;
-    }
-
-    /* Form control */
-    .form-group {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .input-text {
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 0.88rem;
-    }
-
-    .input-text:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1e293b;
-      border: 1px solid #3b82f6;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      z-index: 1000;
-      display: none;
-      animation: slideUp 0.25s ease;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -1640,75 +1891,76 @@
 
   <!-- App Header -->
   <header>
-    <div class="brand-group">
-      <div class="brand-icon">🏋️‍♂️</div>
-      <div>
-        <h1 class="brand-title">訓練計劃行事曆</h1>
-        <div class="brand-subtitle">增肌重組 · 漸進超負荷 · 飲食打卡</div>
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="brand-icon">🏋️</div>
+        <div>
+          <h1 class="brand-title">訓練計劃行事曆</h1>
+          <div class="brand-subtitle">增肌重組 · 漸進超負荷 · 飲食打卡</div>
+        </div>
       </div>
-    </div>
-    <div class="header-actions">
-      <button class="btn btn-sm btn-primary" id="btn-header-goals">🎯 目標設定</button>
-      <button class="btn btn-sm" id="btn-export">💾 匯出備份</button>
-      <button class="btn btn-sm" id="btn-import">📂 匯入備份</button>
-      <input type="file" id="file-import-input" accept=".json" style="display: none;">
-      <button class="btn btn-sm btn-primary" id="btn-jump-today">📍 跳到今天</button>
+      <div class="header-actions">
+        <button class="btn btn-sm btn-ghost" id="btn-export" title="匯出備份" aria-label="匯出備份">💾<span class="btn-label">匯出備份</span></button>
+        <button class="btn btn-sm btn-ghost" id="btn-import" title="匯入備份" aria-label="匯入備份">📂<span class="btn-label">匯入備份</span></button>
+        <input type="file" id="file-import-input" accept=".json" style="display: none;">
+        <button class="btn btn-sm" id="btn-header-goals" title="目標設定" aria-label="目標設定">🎯<span class="btn-label">目標設定</span></button>
+        <button class="btn btn-sm btn-primary" id="btn-jump-today">今天</button>
+      </div>
     </div>
   </header>
 
-  <!-- Tabs Navigation -->
+  <!-- Tabs Navigation（手機版固定於畫面底部） -->
   <nav class="tabs-bar">
-    <button class="tab-btn active" data-tab="calendar">📅 行事曆</button>
-    <button class="tab-btn" data-tab="daily">🏋️ 當日打卡</button>
-    <button class="tab-btn" data-tab="progress">📈 進度追蹤</button>
+    <button class="tab-btn active" data-tab="calendar"><span class="tab-icon">📅</span><span>行事曆</span></button>
+    <button class="tab-btn" data-tab="daily"><span class="tab-icon">🏋️</span><span>當日打卡</span></button>
+    <button class="tab-btn" data-tab="progress"><span class="tab-icon">📈</span><span>進度追蹤</span></button>
   </nav>
 
   <!-- Main Container -->
   <main>
-    <!-- Phase Selector Control Bar -->
-    <div class="phase-switcher-container">
-      <div class="phase-switcher-header">
-        <div class="phase-switcher-label">
-          <span>🔄 目前時期與循環：</span>
-        </div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button class="btn btn-sm btn-outline-cyan" id="btn-open-exercise-customizer">⚡ 自訂動作難度 (退階/進階)</button>
-          <button class="btn btn-sm btn-primary" id="btn-open-phase-settings">🎯 彈性自訂目標與參數</button>
-        </div>
-      </div>
-      <div class="phase-switcher-buttons">
-        <button class="phase-btn active" id="phase-btn-cut" data-phase="cut">
-          <div class="phase-btn-top">
-            <span class="phase-btn-title" id="phase-title-cut">🔥 減脂期</span>
-            <span class="phase-btn-badge" id="phase-badge-cut">進行中</span>
-          </div>
-          <div class="phase-btn-desc" id="phase-desc-cut">
-            載入中...
-          </div>
-        </button>
-        <button class="phase-btn" id="phase-btn-bulk" data-phase="bulk">
-          <div class="phase-btn-top">
-            <span class="phase-btn-title" id="phase-title-bulk">💪 增肌期</span>
-            <span class="phase-btn-badge" id="bulk-unlocked-badge" style="display: none;">已達標解鎖</span>
-          </div>
-          <div class="phase-btn-desc" id="phase-desc-bulk">
-            載入中...
-          </div>
-        </button>
-      </div>
-    </div>
-
-    <!-- Target User Profile Banner -->
-    <div class="profile-badge-bar">
-      <div class="profile-info">
+    <!-- Overview：目前時期摘要 + 收合式時期切換 -->
+    <section class="overview-card">
+      <div class="profile-badge-bar">
         <span class="profile-tag tag-cut" id="banner-phase-badge">🔥 減脂期：目標 64 kg</span>
-        <span>當前體重：<strong id="banner-curr-weight">68.0 kg</strong></span>
-        <span id="banner-equipment">現有器材：8kg 啞鈴×2、單槓、健身椅、滾輪</span>
+        <div class="overview-weight">
+          <span class="overview-label">當前體重</span>
+          <strong class="overview-value" id="banner-curr-weight">68.0 kg</strong>
+        </div>
+        <div class="profile-info">
+          <span id="banner-nutrition-targets">每日熱量：1,800–1,950 kcal · 蛋白質 135–145g</span>
+          <span id="banner-equipment">現有器材：8kg 啞鈴×2、單槓、健身椅、滾輪</span>
+        </div>
       </div>
-      <div>
-        <span style="color: var(--accent-amber); font-weight: 600;" id="banner-nutrition-targets">每日熱量：1,800–1,950 kcal · 蛋白質 135–145g</span>
-      </div>
-    </div>
+
+      <details class="phase-switcher-container">
+        <summary class="phase-switcher-header">
+          <span class="phase-switcher-label">🔄 切換時期・自訂目標與動作難度</span>
+          <span class="summary-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="phase-switcher-body">
+          <div class="phase-switcher-buttons">
+            <button class="phase-btn active" id="phase-btn-cut" data-phase="cut">
+              <div class="phase-btn-top">
+                <span class="phase-btn-title" id="phase-title-cut">🔥 減脂期</span>
+                <span class="phase-btn-badge" id="phase-badge-cut">進行中</span>
+              </div>
+              <div class="phase-btn-desc" id="phase-desc-cut">載入中...</div>
+            </button>
+            <button class="phase-btn" id="phase-btn-bulk" data-phase="bulk">
+              <div class="phase-btn-top">
+                <span class="phase-btn-title" id="phase-title-bulk">💪 增肌期</span>
+                <span class="phase-btn-badge badge-unlocked" id="bulk-unlocked-badge" style="display: none;">已達標解鎖</span>
+              </div>
+              <div class="phase-btn-desc" id="phase-desc-bulk">載入中...</div>
+            </button>
+          </div>
+          <div class="phase-switcher-actions">
+            <button class="btn btn-sm" id="btn-open-phase-settings">🎯 自訂目標與參數</button>
+            <button class="btn btn-sm btn-outline-cyan" id="btn-open-exercise-customizer">⚡ 自訂動作難度（退階／進階）</button>
+          </div>
+        </div>
+      </details>
+    </section>
 
     <!-- ======================================================== -->
     <!-- TAB 1: CALENDAR VIEW                                     -->
@@ -1740,11 +1992,11 @@
 
         <!-- Calendar Legend -->
         <div class="calendar-legend">
-          <div class="legend-item"><span class="legend-badge" style="background: #3b82f622; color: #3b82f6; border-color: #3b82f655;">上A / 上B</span> 上半身課表</div>
-          <div class="legend-item"><span class="legend-badge" style="background: #10b98122; color: #10b981; border-color: #10b98155;">下A / 下B</span> 下半身+核心課表</div>
-          <div class="legend-item"><span class="legend-badge" style="background: #06b6d422; color: #06b6d4; border-color: #06b6d455;">有氧 / 快走</span> 心肺 Zone 2 / 恢復</div>
-          <div class="legend-item"><span class="legend-badge" style="background: #64748b22; color: #94a3b8; border-color: #64748b55;">休息</span> 完全修復日</div>
-          <div class="legend-item legend-tip">💡 點擊任一日期方格即可直接查看當日動作並進行打卡</div>
+          <div class="legend-item"><span class="legend-badge" style="--split: #3b82f6;">上A / 上B</span> 上半身課表</div>
+          <div class="legend-item"><span class="legend-badge" style="--split: #10b981;">下A / 下B</span> 下半身+核心課表</div>
+          <div class="legend-item"><span class="legend-badge" style="--split: #06b6d4;">有氧 / 快走</span> 心肺 Zone 2 / 恢復</div>
+          <div class="legend-item"><span class="legend-badge" style="--split: #64748b;">休息</span> 完全修復日</div>
+          <div class="legend-item legend-tip">點任一天即可查看當日動作並打卡</div>
         </div>
       </div>
     </section>
@@ -1757,7 +2009,7 @@
       <div class="daily-header-card">
         <div class="daily-title-group">
           <div>
-            <h2 id="daily-display-date" style="font-size: 1.35rem; color: #fff;">2026年9月4日 星期五</h2>
+            <h2 id="daily-display-date" style="font-size: 1.35rem; color: var(--text);">2026年9月4日 星期五</h2>
             <div id="daily-split-desc" style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">重点说明...</div>
           </div>
           <span class="split-indicator-pill" id="daily-split-pill">下半身 B + 核心</span>
@@ -1778,7 +2030,7 @@
       <div class="meals-container">
         <div class="meals-header">
           <div>
-            <h3 style="font-size: 1.15rem; color: #fff;">🥗 今日飲食與蛋白質打卡</h3>
+            <h3 style="font-size: 1.15rem; color: var(--text);">🥗 今日飲食與蛋白質打卡</h3>
             <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;" id="meals-goal-desc">
               每日熱量：1,800–1,950 kcal · 蛋白質 135–145g · 飲水 2,500–3,000ml
             </div>
@@ -1821,7 +2073,7 @@
 
           <!-- Weight Logger -->
           <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 10px;">⚖️ 晨起空腹體重記錄</h4>
+            <h4 style="font-size: 1rem; color: var(--text); margin-bottom: 10px;">⚖️ 晨起空腹體重記錄</h4>
             <div class="form-group">
               <input type="date" class="input-text" id="weight-input-date">
               <input type="number" step="0.1" class="input-text" id="weight-input-kg" placeholder="例: 68.4" style="width: 110px;">
@@ -1877,7 +2129,7 @@
 
           <!-- Key Strength Progress -->
           <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 10px;">💪 關鍵力量指標最高紀錄</h4>
+            <h4 style="font-size: 1rem; color: var(--text); margin-bottom: 10px;">💪 關鍵力量指標最高紀錄</h4>
             <div id="strength-records-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem;">
               <!-- Dynamically populated from workout logs -->
             </div>
@@ -1893,7 +2145,7 @@
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="font-size: 1.4rem;">🎯</span>
-          <h3 style="font-size: 1.15rem; color: #fff; margin: 0;">自訂階段訓練目標</h3>
+          <h3 style="font-size: 1.15rem; color: var(--text); margin: 0;">自訂階段訓練目標</h3>
         </div>
         <button type="button" class="btn btn-sm" id="btn-close-modal" style="padding: 4px 10px;">✕</button>
       </div>
@@ -1986,7 +2238,7 @@
     <div class="modal-card" style="max-width: 680px;">
       <div class="modal-header">
         <div>
-          <h3 style="font-size: 1.15rem; color: #fff; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+          <h3 style="font-size: 1.15rem; color: var(--text); font-weight: 700; display: flex; align-items: center; gap: 8px;">
             <span>⚡ 自訂課表動作難度（退階 / 進階）</span>
           </h3>
           <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">

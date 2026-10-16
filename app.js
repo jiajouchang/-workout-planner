@@ -363,7 +363,7 @@
           <span class="day-num">${day}</span>
           ${dateKey === todayKey ? '<span class="day-today-tag">今日</span>' : ''}
         </div>
-        <div class="day-content-badge" style="background: ${split.color}22; color: ${split.color}; border: 1px solid ${split.color}55;">
+        <div class="day-content-badge" style="--split: ${split.color};">
           <span class="badge-text-full">${split.title}</span>
           <span class="badge-text-short">${shortTitle}</span>
         </div>
@@ -460,7 +460,7 @@
 
     dailyDisplayDate.textContent = `${selectedDate.getFullYear()}年${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日 ${dayNames[selectedDate.getDay()]}`;
     dailySplitPill.textContent = split.title;
-    dailySplitPill.style.background = split.color;
+    dailySplitPill.style.setProperty('--split', split.color);
     dailySplitDesc.textContent = split.description;
 
     // Render Workout Section
@@ -470,7 +470,7 @@
       dailyWorkoutContainer.innerHTML = `
         <div class="cardio-card" style="border-color: #64748b;">
           <div style="font-size: 3rem; margin-bottom: 12px;">😴</div>
-          <h3 style="font-size: 1.35rem; color: #fff; margin-bottom: 8px;">今日完全休息日</h3>
+          <h3 style="font-size: 1.35rem; color: var(--text); margin-bottom: 8px;">今日完全休息日</h3>
           <p style="color: var(--text-muted); max-width: 520px; margin: 0 auto; line-height: 1.6;">
             肌肉在訓練中受到微細刺激，但在休息中才能修復並生長茁壯！
             今天請睡飽 7–8 小時、多喝水、正常攝取足量蛋白質，給身體充份恢復。
@@ -482,12 +482,12 @@
       dailyWorkoutContainer.innerHTML = `
         <div class="cardio-card" style="border-color: ${split.color};">
           <div style="font-size: 3rem; margin-bottom: 8px;">🏃‍♂️</div>
-          <h3 style="font-size: 1.35rem; color: #fff; margin-bottom: 6px;">${split.title}</h3>
-          <p style="color: #67e8f9; font-weight: 600; margin-bottom: 10px;">${split.cardioDetail.intensity}</p>
+          <h3 style="font-size: 1.35rem; color: var(--text); margin-bottom: 6px;">${split.title}</h3>
+          <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 10px;">${split.cardioDetail.intensity}</p>
           <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 8px;">
             建議運動項目：${split.cardioDetail.options.join(' · ')}
           </p>
-          <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 16px;">
+          <p style="color: var(--text-2); font-size: 0.9rem; margin-bottom: 16px;">
             建議時長：<strong>${split.cardioDetail.duration}</strong>（${curPhase === 'cut' ? '減脂期加強有氧熱量赤字' : '增肌期維持心肺與恢復'}）
           </p>
           <button class="cardio-done-btn ${isDone ? 'active' : ''}" id="btn-toggle-cardio">
@@ -612,7 +612,7 @@
           } else {
             dumbbellBarHtml = `
               <div class="dumbbell-quick-bar cut-badge-bar">
-                <span class="dumbbell-quick-label" style="color: #fdba74;">🏋️ 現用器材：8 kg 固定啞鈴 × 2（減脂期專注標準軌跡與慢速離心）</span>
+                <span class="dumbbell-quick-label" style="color: var(--cut-ink);">🏋️ 現用器材：8 kg 固定啞鈴 × 2（減脂期專注標準軌跡與慢速離心）</span>
               </div>
             `;
           }
@@ -643,7 +643,7 @@
             <div class="variation-info-banner ${curLevel}">
               <span style="font-size: 1.1rem; flex-shrink: 0;">${curLevel === 'regression' ? '🟢' : (curLevel === 'progression' ? '🟣' : '🔵')}</span>
               <div>
-                <strong style="color: #fff;">${targetEx.variationLevelLabel || '動作難度'}特色：</strong>
+                <strong style="color: var(--text);">${targetEx.variationLevelLabel || '動作難度'}特色：</strong>
                 ${targetEx.tagline}
               </div>
             </div>
@@ -653,7 +653,7 @@
 
           <div class="exercise-body-grid">
             <div class="gif-container">
-              <img src="${exMeta.gif}" alt="${exMeta.name}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'180\\' height=\\'180\\' viewBox=\\'0 0 180 180\\'><rect fill=\\'%231e293b\\' width=\\'180\\' height=\\'180\\'/><text fill=\\'%2394a3b8\\' font-size=\\'14\\' x=\\'50%\\' y=\\'50%\\' text-anchor=\\'middle\\'>${exMeta.name}</text></svg>'">
+              <img src="${exMeta.gif}" alt="${exMeta.name}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'180\\' height=\\'180\\' viewBox=\\'0 0 180 180\\'><rect fill=\\'%23eef2f7\\' width=\\'180\\' height=\\'180\\'/><text fill=\\'%235b6b82\\' font-size=\\'14\\' x=\\'50%\\' y=\\'50%\\' text-anchor=\\'middle\\'>${exMeta.name}</text></svg>'">
             </div>
 
             <div class="exercise-details">
@@ -663,7 +663,7 @@
               </div>
 
               <div class="steps-box">
-                <strong style="color: #fff; display: block; margin-bottom: 4px;">動作步驟：</strong>
+                <strong style="color: var(--text); display: block; margin-bottom: 4px;">動作步驟：</strong>
                 <ol>
                   ${exMeta.steps.map(s => `<li>${s}</li>`).join('')}
                 </ol>
@@ -874,7 +874,7 @@
         <div class="meal-info">
           <input type="checkbox" class="meal-checkbox" ${isChecked ? 'checked' : ''}>
           <div>
-            <strong style="color: #fff; font-size: 0.95rem;">${meal.icon} ${meal.name}</strong>
+            <strong style="color: var(--text); font-size: 1rem;">${meal.icon} ${meal.name}</strong>
             <span class="muscle-badge" style="margin-left: 6px;">蛋白質 ${meal.proteinEst}</span>
             <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 3px;">
               ${meal.desc}
@@ -882,7 +882,7 @@
           </div>
         </div>
         <div>
-          <span style="font-size: 0.8rem; font-weight: 700; color: ${isChecked ? '#10b981' : '#64748b'};">
+          <span style="font-size: 0.8rem; font-weight: 700; color: ${isChecked ? '#059669' : '#5b6b82'};">
             ${isChecked ? '✓ 已攝取' : '未打卡'}
           </span>
         </div>
@@ -1030,7 +1030,7 @@
       adviceBox.innerHTML = `
         💡 <strong>熱量微調提醒：</strong> 剛開始記錄中。建議每週記錄 3–4 次晨起空腹體重，系統將在累計滿 2 週後自動給予熱量微調建議。
       `;
-      adviceBox.style.borderColor = 'var(--border-color)';
+      adviceBox.style.borderLeftColor = 'var(--border-color)';
       return;
     }
 
@@ -1044,7 +1044,7 @@
       adviceBox.innerHTML = `
         ✅ <strong>體重追蹤中：</strong> 目前記錄累計 ${daySpan} 天，體重穩定追蹤中。請持續落實每日 ${cfg.dailyCalories} 與蛋白質 ${cfg.dailyProtein} 目標！
       `;
-      adviceBox.style.borderColor = 'var(--border-color)';
+      adviceBox.style.borderLeftColor = 'var(--border-color)';
       return;
     }
 
@@ -1059,18 +1059,18 @@
           ⚠️ <strong>減脂熱量微調提醒：</strong> 近期體重下降停滯（每週變化 ${ratePerWeek >= 0 ? '+' : ''}${ratePerWeek.toFixed(2)} kg）。<br>
           <strong>建議方案：</strong> 每日熱量<strong>微幅減少 150–200 kcal</strong>（例如晚餐澱粉減 1/3 碗或減少烹調用油），或將 Zone 2 有氧增加 10–15 分鐘以擴大赤字。
         `;
-        adviceBox.style.borderColor = '#ea580c';
+        adviceBox.style.borderLeftColor = '#ea580c';
       } else if (ratePerWeek < -0.8) {
         adviceBox.innerHTML = `
           ⚠️ <strong>減脂熱量微調提醒：</strong> 近期每週減重達 <strong>${Math.abs(ratePerWeek).toFixed(2)} kg</strong>（下降過快 >0.8 kg/週），可能有肌肉流失風險。<br>
           <strong>建議方案：</strong> 每日熱量<strong>增加約 100–150 kcal</strong> 優質碳水或蛋白質，減緩掉重速度以保全肌肉。
         `;
-        adviceBox.style.borderColor = '#ef4444';
+        adviceBox.style.borderLeftColor = '#ef4444';
       } else {
         adviceBox.innerHTML = `
           🎉 <strong>減脂進展極佳：</strong> 目前平均每週減重約 <strong>${Math.abs(ratePerWeek).toFixed(2)} kg</strong>，完全符合精實減脂且最大限度保留肌肉的黃金速度！請繼續保持。
         `;
-        adviceBox.style.borderColor = '#10b981';
+        adviceBox.style.borderLeftColor = '#10b981';
       }
     } else {
       if (ratePerWeek <= 0.05) {
@@ -1078,18 +1078,18 @@
           ⚠️ <strong>增肌熱量微調提醒：</strong> 近期體重增加停滯（每週變化 ${ratePerWeek >= 0 ? '+' : ''}${ratePerWeek.toFixed(2)} kg）。<br>
           <strong>建議方案：</strong> 每日熱量<strong>增加 150–200 kcal</strong>（例如下午點心多加半碗飯、1 根香蕉或 1 杯無糖豆漿）以維持微幅熱量盈餘。
         `;
-        adviceBox.style.borderColor = '#ea580c';
+        adviceBox.style.borderLeftColor = '#ea580c';
       } else if (ratePerWeek > 0.4) {
         adviceBox.innerHTML = `
           ⚠️ <strong>增肌熱量微調提醒：</strong> 近期每週增加達 <strong>${ratePerWeek.toFixed(2)} kg</strong>（超出理想範圍 >0.4 kg/週），可能有較多脂肪堆積。<br>
           <strong>建議方案：</strong> 每日熱量<strong>減少 150–200 kcal</strong>，維持每月約 +0.5 kg 的精實增肌節奏。
         `;
-        adviceBox.style.borderColor = '#ef4444';
+        adviceBox.style.borderLeftColor = '#ef4444';
       } else {
         adviceBox.innerHTML = `
           🎉 <strong>增肌進展極佳：</strong> 目前平均每週增加約 <strong>${ratePerWeek.toFixed(2)} kg</strong>，契合精實增肌的黃金重組速度！請繼續保持訓練與營養節奏。
         `;
-        adviceBox.style.borderColor = '#10b981';
+        adviceBox.style.borderLeftColor = '#10b981';
       }
     }
   }
@@ -1101,7 +1101,7 @@
 
     const sorted = [...weights].sort((a, b) => a.date.localeCompare(b.date)).slice(-15);
     if (sorted.length < 2) {
-      svg.innerHTML = `<text x="50%" y="50%" fill="#64748b" font-size="12" text-anchor="middle">需至少 2 筆體重記錄以繪製趨勢圖</text>`;
+      svg.innerHTML = `<text x="50%" y="50%" fill="#5b6b82" font-size="12" text-anchor="middle">需至少 2 筆體重記錄以繪製趨勢圖</text>`;
       return;
     }
 
@@ -1126,16 +1126,16 @@
     });
 
     // Draw grid lines
-    const gridLines = `<line x1="${padX}" y1="${height - padY}" x2="${width - padX}" y2="${height - padY}" stroke="#23304d" stroke-width="1"/>`;
+    const gridLines = `<line x1="${padX}" y1="${height - padY}" x2="${width - padX}" y2="${height - padY}" stroke="#e3e8ef" stroke-width="1"/>`;
     
     // Draw polyline
-    const pathLine = `<path d="${d}" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>`;
+    const pathLine = `<path d="${d}" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>`;
 
     // Draw points and labels
     const dots = points.map(p => `
-      <circle cx="${p.x}" cy="${p.y}" r="4" fill="#60a5fa" stroke="#090d16" stroke-width="2"/>
-      <text x="${p.x}" y="${p.y - 8}" fill="#94a3b8" font-size="10" text-anchor="middle">${p.kg.toFixed(1)}</text>
-      <text x="${p.x}" y="${height - 10}" fill="#64748b" font-size="9" text-anchor="middle">${p.date.slice(5)}</text>
+      <circle cx="${p.x}" cy="${p.y}" r="4" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+      <text x="${p.x}" y="${p.y - 8}" fill="#334155" font-size="10" text-anchor="middle">${p.kg.toFixed(1)}</text>
+      <text x="${p.x}" y="${height - 10}" fill="#5b6b82" font-size="9" text-anchor="middle">${p.date.slice(5)}</text>
     `).join('');
 
     svg.innerHTML = gridLines + pathLine + dots;
@@ -1203,7 +1203,7 @@
     records.forEach(r => {
       const div = document.createElement('div');
       div.style.cssText = 'display: flex; justify-content: space-between; padding: 8px 12px; background: var(--bg-input); border-radius: var(--radius-sm); border: 1px solid var(--border-color);';
-      div.innerHTML = `<span>${r.name}</span><strong style="color: #60a5fa;">${r.value}</strong>`;
+      div.innerHTML = `<span>${r.name}</span><strong style="color: var(--primary);">${r.value}</strong>`;
       container.appendChild(div);
     });
   }
@@ -1495,7 +1495,7 @@
       });
 
       box.innerHTML = `
-        <div class="customizer-split-title" style="color: ${rawSplit.color};">
+        <div class="customizer-split-title" style="--split: ${rawSplit.color};">
           <span>🏋️ ${splitInfo.name}</span>
           <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: normal;">— ${splitInfo.desc}</span>
         </div>
