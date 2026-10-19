@@ -110,6 +110,15 @@
       toast.style.display = 'none';
     }, 2200);
   }
+  window.showToast = showToast;
+
+  function startRestTimerFor(exId) {
+    if (window.GymWork && window.GymWork.RestTimer) {
+      const meta = (typeof EXERCISES_DATA !== 'undefined' && EXERCISES_DATA[exId]) ? EXERCISES_DATA[exId] : {};
+      const restSec = window.GymWork.ExerciseIntelligence.getDefaultRestSeconds(exId);
+      window.GymWork.RestTimer.start(restSec, meta.name || exId);
+    }
+  }
 
   function updateProfileBanner() {
     const curPhase = appState.currentPhase || 'cut';
@@ -559,12 +568,32 @@
             dayLog.exercises[exId].sets.push({
               weight: targetEx.defaultWeight !== undefined ? targetEx.defaultWeight : (curPhase === 'cut' ? 8 : 20),
               reps: targetEx.minReps,
+              rpe: null,
               done: false
             });
           }
         }
         const setsData = dayLog.exercises[exId].sets;
         const weightUnit = targetEx.weightUnit || (curPhase === 'bulk' && targetEx.isDumbbell ? 'lbs' : 'kg');
+
+        // GymWork: Smart AI Recommendation
+        let smartRecHtml = '';
+        if (window.GymWork && window.GymWork.ExerciseIntelligence) {
+          const rec = window.GymWork.ExerciseIntelligence.getSmartRecommendation(appState, exId, targetEx, curPhase, dateKey);
+          if (rec) {
+            smartRecHtml = `
+              <div class="smart-recommendation-card">
+                <div class="smart-rec-content">
+                  <div class="smart-rec-badge">${rec.badge}</div>
+                  <div class="smart-rec-text">${rec.advice}</div>
+                </div>
+                <button type="button" class="btn-apply-rec" data-ex="${exId}" data-weight="${rec.suggestedWeight}" data-reps="${rec.suggestedReps}">
+                  ⚡ 套用推薦 (${rec.suggestedWeight} ${rec.unit} / ${rec.suggestedReps}下)
+                </button>
+              </div>
+            `;
+          }
+        }
 
         // Build Overload Alert HTML
         let alertHtml = '';
@@ -650,6 +679,7 @@
           ` : ''}
 
           ${alertHtml}
+          ${smartRecHtml}
 
           <div class="exercise-body-grid">
             <div class="gif-container">
@@ -679,11 +709,16 @@
                       <th>組別</th>
                       <th>重量 (${weightUnit})</th>
                       <th>次數</th>
+                      <th>自覺強度 (RPE)</th>
+                      <th>預估 1RM</th>
                       <th>打卡狀態</th>
                     </tr>
                   </thead>
                   <tbody>
-                    ${setsData.map((s, idx) => `
+                    ${setsData.map((s, idx) => {
+                      const est1RM = window.GymWork ? window.GymWork.ExerciseIntelligence.estimate1RM(s.weight, s.reps) : 0;
+                      const curRpe = (s.rpe !== undefined && s.rpe !== null) ? s.rpe : '';
+                      return `
                       <tr>
                         <td>第 ${idx + 1} 組</td>
                         <td>
@@ -693,12 +728,29 @@
                           <input type="number" class="set-input set-reps" data-ex="${exId}" data-set="${idx}" value="${s.reps || 0}">
                         </td>
                         <td>
+                          <select class="rpe-select set-rpe" data-ex="${exId}" data-set="${idx}" title="自覺運動強度（RPE 8 = 還能做2下；RPE 9 = 還能做1下；RPE 10 = 完全力竭）">
+                            <option value="" ${curRpe === '' ? 'selected' : ''}>請選擇 RPE</option>
+                            <option value="6.0" ${curRpe == 6 ? 'selected' : ''}>6 (非常輕鬆)</option>
+                            <option value="7.0" ${curRpe == 7 ? 'selected' : ''}>7 (餘3下以上)</option>
+                            <option value="7.5" ${curRpe == 7.5 ? 'selected' : ''}>7.5 (餘2~3下)</option>
+                            <option value="8.0" ${curRpe == 8 ? 'selected' : ''}>8 (黃金區 餘2下)</option>
+                            <option value="8.5" ${curRpe == 8.5 ? 'selected' : ''}>8.5 (餘1~2下)</option>
+                            <option value="9.0" ${curRpe == 9 ? 'selected' : ''}>9 (極度挑戰 餘1下)</option>
+                            <option value="9.5" ${curRpe == 9.5 ? 'selected' : ''}>9.5 (極限邊緣)</option>
+                            <option value="10.0" ${curRpe == 10 ? 'selected' : ''}>10 (完全力竭)</option>
+                          </select>
+                        </td>
+                        <td>
+                          <span class="est-1rm-badge" data-unit="${weightUnit}">${est1RM > 0 ? `${est1RM} ${weightUnit}` : '-'}</span>
+                        </td>
+                        <td>
                           <button class="set-check-btn ${s.done ? 'done' : ''}" data-action="toggle-set" data-ex="${exId}" data-set="${idx}">
                             ${s.done ? '✓ 已完成' : '標記完成'}
                           </button>
                         </td>
                       </tr>
-                    `).join('')}
+                      `;
+                    }).join('')}
                   </tbody>
                 </table>
               </div>
@@ -784,22 +836,77 @@
         });
       });
 
+      // Helper to update 1RM badge dynamically without full re-render
+      const updateRow1RMLive = (inputEl) => {
+        const row = inputEl.closest('tr');
+        if (!row) return;
+        const badge = row.querySelector('.est-1rm-badge');
+        if (!badge) return;
+        const w = parseFloat(row.querySelector('.set-weight')?.value) || 0;
+        const r = parseInt(row.querySelector('.set-reps')?.value, 10) || 0;
+        const est = window.GymWork ? window.GymWork.ExerciseIntelligence.estimate1RM(w, r) : 0;
+        const unit = badge.getAttribute('data-unit') || 'kg';
+        badge.textContent = est > 0 ? `${est} ${unit}` : '-';
+      };
+
       // Bind Exercise Card Interactive Events
       dailyWorkoutContainer.querySelectorAll('.set-weight').forEach(input => {
+        input.addEventListener('input', (e) => updateRow1RMLive(e.target));
         input.addEventListener('change', (e) => {
           const exId = e.target.getAttribute('data-ex');
           const setIdx = Number(e.target.getAttribute('data-set'));
           dayLog.exercises[exId].sets[setIdx].weight = parseFloat(e.target.value) || 0;
+          updateRow1RMLive(e.target);
           saveState();
         });
       });
 
       dailyWorkoutContainer.querySelectorAll('.set-reps').forEach(input => {
+        input.addEventListener('input', (e) => updateRow1RMLive(e.target));
         input.addEventListener('change', (e) => {
           const exId = e.target.getAttribute('data-ex');
           const setIdx = Number(e.target.getAttribute('data-set'));
           dayLog.exercises[exId].sets[setIdx].reps = parseInt(e.target.value, 10) || 0;
+          updateRow1RMLive(e.target);
           saveState();
+        });
+      });
+
+      // Bind RPE select change events
+      dailyWorkoutContainer.querySelectorAll('.set-rpe').forEach(select => {
+        select.addEventListener('change', (e) => {
+          const exId = e.target.getAttribute('data-ex');
+          const setIdx = Number(e.target.getAttribute('data-set'));
+          const val = e.target.value;
+          dayLog.exercises[exId].sets[setIdx].rpe = val ? parseFloat(val) : null;
+          saveState();
+        });
+      });
+
+      // Bind Apply Recommendation click events (only apply to non-completed sets)
+      dailyWorkoutContainer.querySelectorAll('.btn-apply-rec').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const exId = btn.getAttribute('data-ex');
+          const recW = parseFloat(btn.getAttribute('data-weight')) || 0;
+          const recR = parseInt(btn.getAttribute('data-reps'), 10) || 0;
+
+          if (dayLog.exercises[exId] && dayLog.exercises[exId].sets) {
+            let appliedCount = 0;
+            dayLog.exercises[exId].sets.forEach(s => {
+              if (!s.done) {
+                s.weight = recW;
+                s.reps = recR;
+                appliedCount++;
+              }
+            });
+            if (appliedCount > 0) {
+              saveState();
+              renderDailyView();
+              showToast(`已套用推薦 (${recW} / ${recR}下) 至未完成的 ${appliedCount} 組！`);
+            } else {
+              showToast(`該動作今日所有組數皆已完成打卡，未進行覆蓋。`);
+            }
+          }
         });
       });
 
@@ -815,9 +922,14 @@
             saveState();
             renderDailyView();
             renderCalendar();
+
+            // GymWork: Auto-start Rest Timer on completion
+            if (cur.done) {
+              startRestTimerFor(exId);
+            }
           } else if (action === 'add-set') {
-            const prev = dayLog.exercises[exId].sets[dayLog.exercises[exId].sets.length - 1] || { weight: curPhase === 'cut' ? 8 : 20, reps: 10 };
-            dayLog.exercises[exId].sets.push({ weight: prev.weight, reps: prev.reps, done: false });
+            const prev = dayLog.exercises[exId].sets[dayLog.exercises[exId].sets.length - 1] || { weight: curPhase === 'cut' ? 8 : 20, reps: 10, rpe: null };
+            dayLog.exercises[exId].sets.push({ weight: prev.weight, reps: prev.reps, rpe: null, done: false });
             saveState();
             renderDailyView();
           } else if (action === 'remove-set') {
@@ -831,6 +943,9 @@
             renderDailyView();
             renderCalendar();
             showToast('已完成該動作所有組數！');
+
+            // GymWork: Auto-start Rest Timer on completing all sets
+            startRestTimerFor(exId);
           } else if (action === 'upgrade') {
             appState.progression[exId].stageIndex++;
             saveState();
@@ -1022,6 +1137,12 @@
 
     // Render Strength Records
     renderStrengthRecords();
+
+    // Render GymWork Weekly Volume Dashboard
+    const volContainer = document.getElementById('weekly-volume-dashboard-container');
+    if (volContainer && window.GymWork && window.GymWork.MuscleVolumeAnalytics) {
+      volContainer.innerHTML = window.GymWork.MuscleVolumeAnalytics.renderVolumeDashboard(appState, selectedDate);
+    }
   }
 
   function renderCaloricAdvice(weights, isCut, cfg) {
@@ -1564,6 +1685,11 @@
   // Set default date input values
   document.getElementById('weight-input-date').value = formatDateKey(new Date());
   document.getElementById('measure-date').value = formatDateKey(new Date());
+
+  // Initialize GymWork Features
+  if (window.GymWork && window.GymWork.RestTimer) {
+    window.GymWork.RestTimer.init();
+  }
 
   // Boot application
   updateProfileBanner();

@@ -6,6 +6,7 @@
   <title>訓練計劃行事曆 App | Workout Planner</title>
   <script src="exercises_data.js"></script>
   <script src="plan.js"></script>
+  <script src="gymwork_features.js"></script>
   <style>
     /* ========================================================== */
     /* Design tokens — 清爽淺色主題                                 */
@@ -1885,6 +1886,310 @@
         transition: none !important;
       }
     }
+
+    /* ========================================================== */
+    /* GymWork Features: Rest Timer & Volume & AI Recommendation   */
+    /* ========================================================== */
+    .rest-timer-widget {
+      position: fixed;
+      right: 24px;
+      bottom: calc(var(--bottom-nav-h) + 20px);
+      z-index: 999;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .rest-timer-widget.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px) scale(0.95);
+    }
+    .rest-timer-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
+      width: 290px;
+      box-sizing: border-box;
+    }
+    .rest-timer-widget.finished .rest-timer-card {
+      border-color: var(--success);
+      background: var(--success-soft);
+      animation: pulse-border 1.5s infinite;
+    }
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(5, 150, 105, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+    }
+    .rest-timer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .rest-timer-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rest-timer-icon {
+      font-size: 1.4rem;
+    }
+    .rest-timer-title {
+      font-size: 0.95rem;
+      color: var(--text);
+      display: block;
+    }
+    .rest-timer-ex-name {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: block;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rest-timer-tools {
+      display: flex;
+      gap: 6px;
+    }
+    .timer-btn-tool {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 4px;
+      color: var(--text-muted);
+      border-radius: 4px;
+    }
+    .timer-btn-tool:hover {
+      background: var(--surface-3);
+      color: var(--text);
+    }
+    .rest-timer-display {
+      margin-bottom: 12px;
+    }
+    .rest-timer-digits {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-align: center;
+      letter-spacing: 1px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+    }
+    .rest-timer-widget.finished .rest-timer-digits {
+      font-size: 1.3rem;
+      color: var(--success);
+    }
+    .rest-progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: var(--surface-3);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .rest-progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.4s linear;
+    }
+    .rest-timer-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .timer-action-btn {
+      flex: 1;
+      padding: 6px 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--text-2);
+      transition: all 0.15s;
+    }
+    .timer-action-btn:hover {
+      background: var(--surface-2);
+      border-color: var(--border-strong);
+    }
+    .timer-btn-skip {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+    .timer-btn-skip:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* AI Recommendation Banner */
+    .smart-recommendation-card {
+      background: linear-gradient(135deg, #f0f7ff 0%, #f5f3ff 100%);
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .smart-rec-content {
+      flex: 1 1 240px;
+    }
+    .smart-rec-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--bulk);
+      background: #fff;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      margin-bottom: 4px;
+    }
+    .smart-rec-text {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      line-height: 1.45;
+    }
+    .btn-apply-rec {
+      background: var(--bulk);
+      color: #fff;
+      border: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn-apply-rec:hover {
+      background: var(--bulk-ink);
+    }
+
+    /* RPE & 1RM in Sets Table */
+    .rpe-select {
+      padding: 4px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    .est-1rm-badge {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Muscle Volume Analytics Grid */
+    .weekly-vol-summary-pill {
+      display: flex;
+      gap: 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      color: var(--text-2);
+    }
+    .muscle-volume-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .muscle-volume-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+    .muscle-vol-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .muscle-vol-name {
+      font-size: 0.95rem;
+    }
+    .muscle-vol-status {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .status-empty { background: var(--surface-3); color: var(--text-dim); }
+    .status-low { background: #fef3c7; color: #b45309; }
+    .status-optimal { background: #dcfce7; color: #15803d; }
+    .status-high { background: #e0e7ff; color: #4338ca; }
+    .muscle-vol-numbers {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .vol-num-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    .vol-num-val {
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    .vol-num-val small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+    .muscle-vol-bar-bg {
+      height: 6px;
+      width: 100%;
+      background: var(--surface-3);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .muscle-vol-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+    .muscle-vol-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .rest-timer-widget {
+        right: 12px;
+        left: 12px;
+        bottom: calc(var(--bottom-nav-h) + 12px);
+      }
+      .rest-timer-card {
+        width: 100%;
+      }
+      .muscle-volume-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2136,6 +2441,9 @@
           </div>
         </div>
       </div>
+
+      <!-- GymWork: Weekly Muscle Volume Dashboard -->
+      <div id="weekly-volume-dashboard-container" style="margin-top: 20px;"></div>
     </section>
   </main>
 
